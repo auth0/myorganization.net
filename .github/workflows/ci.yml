@@ -1,0 +1,42 @@
+name: ci
+
+on: [push]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: false
+
+env:
+  DOTNET_NOLOGO: true
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v6
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v5
+        with:
+          dotnet-version: 10.x
+
+      - name: Install tools
+        run: dotnet tool restore
+
+      - name: Restore dependencies
+        run: dotnet restore src/Auth0.MyOrganizationApi/Auth0.MyOrganizationApi.csproj
+
+      - name: Build
+        run: dotnet build src/Auth0.MyOrganizationApi/Auth0.MyOrganizationApi.csproj --no-restore -c Release
+
+      - name: Restore test dependencies
+        run: dotnet restore src/Auth0.MyOrganizationApi.Test/Auth0.MyOrganizationApi.Test.csproj
+
+      - name: Build tests
+        run: dotnet build src/Auth0.MyOrganizationApi.Test/Auth0.MyOrganizationApi.Test.csproj --no-restore -c Release
+
+      - name: Test
+        run: dotnet test src/Auth0.MyOrganizationApi.Test/Auth0.MyOrganizationApi.Test.csproj --no-restore --no-build -c Release
+

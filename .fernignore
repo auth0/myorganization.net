@@ -1,0 +1,15 @@
+
+.gitignore
+.editorconfig
+
+README.md
+LICENSE
+
+src/Auth0.MyOrganizationApi/Auth0.MyOrganizationApi.Custom.props
+
+src/Auth0.MyOrganizationApi/Wrapper
+src/Auth0.MyOrganizationApi.Test/Unit/Wrapper
+src/Auth0.MyOrganizationApi.Test/Auth0.MyOrganizationApi.Test.Custom.props
+
+src/Auth0.MyOrganizationApi/Core/RawClient.cs
+src/Auth0.MyOrganizationApi/MyOrganizationApiClient.Internal.cs

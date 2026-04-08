@@ -1,0 +1,21 @@
+{
+  "cliVersion": "4.29.0",
+  "generatorName": "fernapi/fern-csharp-sdk",
+  "generatorVersion": "2.30.0",
+  "generatorConfig": {
+    "namespace": "Auth0.MyOrganizationApi",
+    "package-id": "Auth0.MyOrganizationApi",
+    "client-class-name": "MyOrganizationApiClient",
+    "base-api-exception-class-name": "MyOrganizationApiException",
+    "base-exception-class-name": "MyOrganizationException",
+    "generate-mock-server-tests": true,
+    "use-default-request-parameter-values": true,
+    "experimental-explicit-nullable-optional": true,
+    "use-undiscriminated-unions": true,
+    "redact-response-body-on-error": true,
+    "sln-format": "sln",
+    "omit-fern-headers": true
+  },
+  "originGitCommit": "33bcc5d4e893559e35a90ad0025a42cfb645c687",
+  "sdkVersion": "0.0.0"
+}

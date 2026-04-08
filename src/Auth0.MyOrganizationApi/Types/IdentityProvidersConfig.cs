@@ -1,0 +1,34 @@
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using Auth0.MyOrganizationApi.Core;
+
+namespace Auth0.MyOrganizationApi;
+
+[Serializable]
+public record IdentityProvidersConfig : IJsonOnDeserialized
+{
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
+    [JsonPropertyName("organization")]
+    public required IdentityProvidersConfigOrganization Organization { get; set; }
+
+    [JsonPropertyName("strategies")]
+    public required IdentityProvidersConfigStrategyOverride Strategies { get; set; }
+
+    [JsonPropertyName("domain_aliases_config")]
+    public required IdentityProvidersConfigDomainAlias DomainAliasesConfig { get; set; }
+
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
+
+    /// <inheritdoc />
+    public override string ToString()
+    {
+        return JsonUtils.Serialize(this);
+    }
+}
