@@ -1,0 +1,8 @@
+{
+    "files": {
+        "src/Auth0.MyOrganizationApi/Auth0.MyOrganizationApi.csproj": [],
+        "src/Auth0.MyOrganizationApi/Auth0.MyOrganizationApi.Custom.props": [],
+        ".version": []
+    },
+    "prefixVersion": false
+}
