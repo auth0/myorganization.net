@@ -1,11 +1,11 @@
-![C# SDK for Auth0 MyOrganization](https://cdn.auth0.com/website/sdks/banners/myorganization-csharp-banner.png)
+![C# SDK for Auth0 MyOrganization](https://cdn.auth0.com/website/sdks/banners/myorganization-net-banner.png)
 
 <div align="center">
 
 [![NuGet](https://img.shields.io/nuget/v/Auth0.MyOrganizationApi?style=flat-square)](https://nuget.org/packages/Auth0.MyOrganizationApi)
 [![NuGet Downloads](https://img.shields.io/nuget/dt/Auth0.MyOrganizationApi?style=flat-square)](https://nuget.org/packages/Auth0.MyOrganizationApi)
-[![Build Status](https://img.shields.io/github/actions/workflow/status/atko-cic/myorganization.net/ci.yml?branch=main&style=flat-square)](https://github.com/atko-cic/myorganization.net/actions?query=branch%3Amain)
-[![License](https://img.shields.io/github/license/atko-cic/myorganization.net.svg?style=flat-square)](https://github.com/atko-cic/myorganization.net/blob/main/LICENSE)
+[![Build and Test](https://github.com/auth0/myorganization.net/actions/workflows/build.yml/badge.svg)](https://github.com/auth0/myorganization.net/actions/workflows/build.yml)
+
 
 📚 [Documentation](#documentation) • 🚀 [Getting Started](#getting-started) • 💬 [Feedback](#feedback)
 
@@ -448,7 +448,7 @@ var client = new MyOrganizationClient(new MyOrganizationClientOptions
 
 ### Telemetry
 
-The SDK sends an `Auth0-Client` header on every request containing the SDK name (`Auth0.Net`), version, and .NET runtime target (base64-encoded JSON). The header is injected automatically and requires no configuration.
+The SDK sends an `Auth0-Client` header on every request containing the SDK name (`MyOrganization.NET`), version, and .NET runtime target (base64-encoded JSON). The header is injected automatically and requires no configuration.
 
 ## Feedback
 
@@ -463,7 +463,7 @@ While we value open-source contributions to this SDK, this library is generated 
 
 ### Raise an Issue
 
-To provide feedback or report a bug, please [raise an issue on our issue tracker](https://github.com/atko-cic/myorganization.net/issues).
+To provide feedback or report a bug, please [raise an issue on our issue tracker](https://github.com/auth0/myorganization.net/issues).
 
 ### Vulnerability Reporting
 
