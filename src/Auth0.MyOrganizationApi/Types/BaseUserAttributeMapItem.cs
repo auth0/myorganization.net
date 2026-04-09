@@ -1,6 +1,6 @@
-using System.Text.Json;
-using System.Text.Json.Serialization;
 using Auth0.MyOrganizationApi.Core;
+using global::System.Text.Json;
+using global::System.Text.Json.Serialization;
 
 namespace Auth0.MyOrganizationApi;
 
@@ -14,8 +14,9 @@ public record BaseUserAttributeMapItem : IJsonOnDeserialized
     /// <summary>
     /// The name of the user attribute.
     /// </summary>
+    [Optional]
     [JsonPropertyName("user_attribute")]
-    public required string UserAttribute { get; set; }
+    public string? UserAttribute { get; set; }
 
     /// <summary>
     /// The description of the user attribute.
@@ -44,7 +45,7 @@ public record BaseUserAttributeMapItem : IJsonOnDeserialized
     public required bool IsExtra { get; set; }
 
     /// <summary>
-    /// Indicates whether this attribute is expected but not provided by the admin defined schema. The property will   be added when a refresh operation is performed.
+    /// Indicates whether this attribute is expected but not provided by the admin defined schema. The property will be added when a refresh operation is performed.
     /// </summary>
     [JsonPropertyName("is_missing")]
     public required bool IsMissing { get; set; }

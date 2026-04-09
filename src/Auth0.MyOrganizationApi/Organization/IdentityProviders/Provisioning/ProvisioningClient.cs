@@ -1,7 +1,7 @@
-using System.Text.Json;
 using Auth0.MyOrganizationApi;
 using Auth0.MyOrganizationApi.Core;
 using Auth0.MyOrganizationApi.Organization.IdentityProviders.Provisioning;
+using global::System.Text.Json;
 
 namespace Auth0.MyOrganizationApi.Organization.IdentityProviders;
 
@@ -318,7 +318,7 @@ public partial class ProvisioningClient : IProvisioningClient
     }
 
     /// <summary>
-    /// Retrieve the Provisioning configuration for this identity provider.
+    /// Retrieve the Provisioning Configuration for an Identity Provider specified by ID for this Organization.
     /// </summary>
     /// <example><code>
     /// await client.Organization.IdentityProviders.Provisioning.GetAsync("idp_id");
@@ -335,7 +335,7 @@ public partial class ProvisioningClient : IProvisioningClient
     }
 
     /// <summary>
-    /// Create the Provisioning configuration for this identity provider.
+    /// Create a new Provisioning Configuration for an Identity Provider specified by ID for this Organization.
     /// </summary>
     /// <example><code>
     /// await client.Organization.IdentityProviders.Provisioning.CreateAsync("idp_id");
@@ -352,7 +352,7 @@ public partial class ProvisioningClient : IProvisioningClient
     }
 
     /// <summary>
-    /// Delete the Provisioning configuration for an identity provider.
+    /// Delete the Provisioning Configuration for an Identity Provider specified by ID for this Organization.
     /// </summary>
     /// <example><code>
     /// await client.Organization.IdentityProviders.Provisioning.DeleteAsync("idp_id");
@@ -429,7 +429,7 @@ public partial class ProvisioningClient : IProvisioningClient
     }
 
     /// <summary>
-    /// Triggers a refresh of attribute mappings on the provisioning configuration by overriding it with the admin defined defaults. The endpoint doesn't accept any body parameters.
+    /// Refresh the attribute mapping for the Provisioning Configuration of an Identity Provider specified by ID for this Organization. Mappings are reset to the admin-defined defaults.
     /// </summary>
     /// <example><code>
     /// await client.Organization.IdentityProviders.Provisioning.UpdateAttributesAsync(

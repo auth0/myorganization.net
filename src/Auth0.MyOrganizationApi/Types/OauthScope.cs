@@ -1,6 +1,6 @@
-using System.Text.Json;
-using System.Text.Json.Serialization;
 using Auth0.MyOrganizationApi.Core;
+using global::System.Text.Json;
+using global::System.Text.Json.Serialization;
 
 namespace Auth0.MyOrganizationApi;
 
@@ -168,9 +168,14 @@ public readonly record struct OauthScope : IStringEnum
     public static readonly OauthScope ReadMyOrgMembers = new(Values.ReadMyOrgMembers);
 
     /// <summary>
-    /// Delete members from organization
+    /// Delete members from organization and the underlying users
     /// </summary>
     public static readonly OauthScope DeleteMyOrgMembers = new(Values.DeleteMyOrgMembers);
+
+    /// <summary>
+    /// Delete members from organization without deleting underlying users
+    /// </summary>
+    public static readonly OauthScope DeleteMyOrgMemberships = new(Values.DeleteMyOrgMemberships);
 
     /// <summary>
     /// List Roles for members in organization
@@ -275,6 +280,29 @@ public readonly record struct OauthScope : IStringEnum
         )
         {
             writer.WriteStringValue(value.Value);
+        }
+
+        public override OauthScope ReadAsPropertyName(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON property name could not be read as a string."
+                );
+            return new OauthScope(stringValue);
+        }
+
+        public override void WriteAsPropertyName(
+            Utf8JsonWriter writer,
+            OauthScope value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WritePropertyName(value.Value);
         }
     }
 
@@ -420,9 +448,14 @@ public readonly record struct OauthScope : IStringEnum
         public const string ReadMyOrgMembers = "read:my_org:members";
 
         /// <summary>
-        /// Delete members from organization
+        /// Delete members from organization and the underlying users
         /// </summary>
         public const string DeleteMyOrgMembers = "delete:my_org:members";
+
+        /// <summary>
+        /// Delete members from organization without deleting underlying users
+        /// </summary>
+        public const string DeleteMyOrgMemberships = "delete:my_org:memberships";
 
         /// <summary>
         /// List Roles for members in organization

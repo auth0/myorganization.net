@@ -5,7 +5,7 @@ namespace Auth0.MyOrganizationApi.Organization.Domains;
 public partial interface IVerifyClient
 {
     /// <summary>
-    /// Get a verification text and start the domain verification process for a particular domain.
+    /// Initiate the verification process for a domain specified by ID for this Organization.
     /// </summary>
     WithRawResponseTask<OrgDomain> CreateAsync(
         string domainId,

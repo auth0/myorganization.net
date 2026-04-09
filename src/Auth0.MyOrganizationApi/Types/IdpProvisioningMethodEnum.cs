@@ -1,6 +1,6 @@
-using System.Text.Json;
-using System.Text.Json.Serialization;
 using Auth0.MyOrganizationApi.Core;
+using global::System.Text.Json;
+using global::System.Text.Json.Serialization;
 
 namespace Auth0.MyOrganizationApi;
 
@@ -8,8 +8,6 @@ namespace Auth0.MyOrganizationApi;
 [Serializable]
 public readonly record struct IdpProvisioningMethodEnum : IStringEnum
 {
-    public static readonly IdpProvisioningMethodEnum GoogleSync = new(Values.GoogleSync);
-
     public static readonly IdpProvisioningMethodEnum None = new(Values.None);
 
     public static readonly IdpProvisioningMethodEnum Scim = new(Values.Scim);
@@ -79,6 +77,29 @@ public readonly record struct IdpProvisioningMethodEnum : IStringEnum
         {
             writer.WriteStringValue(value.Value);
         }
+
+        public override IdpProvisioningMethodEnum ReadAsPropertyName(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON property name could not be read as a string."
+                );
+            return new IdpProvisioningMethodEnum(stringValue);
+        }
+
+        public override void WriteAsPropertyName(
+            Utf8JsonWriter writer,
+            IdpProvisioningMethodEnum value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WritePropertyName(value.Value);
+        }
     }
 
     /// <summary>
@@ -87,8 +108,6 @@ public readonly record struct IdpProvisioningMethodEnum : IStringEnum
     [Serializable]
     public static class Values
     {
-        public const string GoogleSync = "google-sync";
-
         public const string None = "none";
 
         public const string Scim = "scim";

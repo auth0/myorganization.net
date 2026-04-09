@@ -1,5 +1,5 @@
-using System.Text.Json;
 using Auth0.MyOrganizationApi.Core;
+using global::System.Text.Json;
 
 namespace Auth0.MyOrganizationApi;
 
@@ -198,7 +198,7 @@ public partial class OrganizationDetailsClient : IOrganizationDetailsClient
     }
 
     /// <summary>
-    /// Retrieve details for an Organization.
+    /// Retrieve details for this Organization, including display name and branding options. To learn more about Auth0 Organizations, read [Organizations](https://auth0.com/docs/manage-users/organizations).
     /// </summary>
     /// <example><code>
     /// await client.OrganizationDetails.GetAsync();
@@ -212,7 +212,7 @@ public partial class OrganizationDetailsClient : IOrganizationDetailsClient
     }
 
     /// <summary>
-    /// Update the details of a specific Organization, such as display name and branding options.
+    /// Update details for this Organization, such as display name and branding options. To learn more about Auth0 Organizations, read [Organizations](https://auth0.com/docs/manage-users/organizations).
     /// </summary>
     /// <example><code>
     /// await client.OrganizationDetails.UpdateAsync(

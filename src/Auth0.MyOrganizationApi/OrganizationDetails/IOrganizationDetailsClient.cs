@@ -3,7 +3,7 @@ namespace Auth0.MyOrganizationApi;
 public partial interface IOrganizationDetailsClient
 {
     /// <summary>
-    /// Retrieve details for an Organization.
+    /// Retrieve details for this Organization, including display name and branding options. To learn more about Auth0 Organizations, read [Organizations](https://auth0.com/docs/manage-users/organizations).
     /// </summary>
     WithRawResponseTask<OrgDetailsRead> GetAsync(
         RequestOptions? options = null,
@@ -11,7 +11,7 @@ public partial interface IOrganizationDetailsClient
     );
 
     /// <summary>
-    /// Update the details of a specific Organization, such as display name and branding options.
+    /// Update details for this Organization, such as display name and branding options. To learn more about Auth0 Organizations, read [Organizations](https://auth0.com/docs/manage-users/organizations).
     /// </summary>
     WithRawResponseTask<OrgDetailsRead> UpdateAsync(
         OrgDetails request,

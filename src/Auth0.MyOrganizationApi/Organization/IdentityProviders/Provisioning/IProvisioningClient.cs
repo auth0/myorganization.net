@@ -8,7 +8,7 @@ public partial interface IProvisioningClient
     public IScimTokensClient ScimTokens { get; }
 
     /// <summary>
-    /// Retrieve the Provisioning configuration for this identity provider.
+    /// Retrieve the Provisioning Configuration for an Identity Provider specified by ID for this Organization.
     /// </summary>
     WithRawResponseTask<GetIdPProvisioningConfigResponseContent> GetAsync(
         string idpId,
@@ -17,7 +17,7 @@ public partial interface IProvisioningClient
     );
 
     /// <summary>
-    /// Create the Provisioning configuration for this identity provider.
+    /// Create a new Provisioning Configuration for an Identity Provider specified by ID for this Organization.
     /// </summary>
     WithRawResponseTask<CreateIdPProvisioningConfigResponseContent> CreateAsync(
         string idpId,
@@ -26,7 +26,7 @@ public partial interface IProvisioningClient
     );
 
     /// <summary>
-    /// Delete the Provisioning configuration for an identity provider.
+    /// Delete the Provisioning Configuration for an Identity Provider specified by ID for this Organization.
     /// </summary>
     Task DeleteAsync(
         string idpId,
@@ -35,7 +35,7 @@ public partial interface IProvisioningClient
     );
 
     /// <summary>
-    /// Triggers a refresh of attribute mappings on the provisioning configuration by overriding it with the admin defined defaults. The endpoint doesn't accept any body parameters.
+    /// Refresh the attribute mapping for the Provisioning Configuration of an Identity Provider specified by ID for this Organization. Mappings are reset to the admin-defined defaults.
     /// </summary>
     WithRawResponseTask<GetIdPProvisioningConfigResponseContent> UpdateAttributesAsync(
         string idpId,

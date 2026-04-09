@@ -1,6 +1,6 @@
-using System.Text.Json;
-using System.Text.Json.Serialization;
 using Auth0.MyOrganizationApi.Core;
+using global::System.Text.Json;
+using global::System.Text.Json.Serialization;
 
 namespace Auth0.MyOrganizationApi;
 
@@ -14,7 +14,9 @@ public readonly record struct IdentityProvidersConfigEnabledFeaturesEnum : IStri
         Values.Provisioning
     );
 
-    public static readonly IdentityProvidersConfigEnabledFeaturesEnum Logout = new(Values.Logout);
+    public static readonly IdentityProvidersConfigEnabledFeaturesEnum UniversalLogout = new(
+        Values.UniversalLogout
+    );
 
     public IdentityProvidersConfigEnabledFeaturesEnum(string value)
     {
@@ -88,6 +90,29 @@ public readonly record struct IdentityProvidersConfigEnabledFeaturesEnum : IStri
         {
             writer.WriteStringValue(value.Value);
         }
+
+        public override IdentityProvidersConfigEnabledFeaturesEnum ReadAsPropertyName(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON property name could not be read as a string."
+                );
+            return new IdentityProvidersConfigEnabledFeaturesEnum(stringValue);
+        }
+
+        public override void WriteAsPropertyName(
+            Utf8JsonWriter writer,
+            IdentityProvidersConfigEnabledFeaturesEnum value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WritePropertyName(value.Value);
+        }
     }
 
     /// <summary>
@@ -98,6 +123,6 @@ public readonly record struct IdentityProvidersConfigEnabledFeaturesEnum : IStri
     {
         public const string Provisioning = "provisioning";
 
-        public const string Logout = "logout";
+        public const string UniversalLogout = "universal_logout";
     }
 }

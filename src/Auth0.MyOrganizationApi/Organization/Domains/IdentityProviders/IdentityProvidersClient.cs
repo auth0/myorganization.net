@@ -1,6 +1,6 @@
-using System.Text.Json;
 using Auth0.MyOrganizationApi;
 using Auth0.MyOrganizationApi.Core;
+using global::System.Text.Json;
 
 namespace Auth0.MyOrganizationApi.Organization.Domains;
 
@@ -113,7 +113,7 @@ public partial class IdentityProvidersClient : IIdentityProvidersClient
     }
 
     /// <summary>
-    /// Retrieve the list of identity providers that have a specific organization domain alias.
+    /// Retrieve the list of Identity Providers associated with a domain specified by ID for this Organization.
     /// </summary>
     /// <example><code>
     /// await client.Organization.Domains.IdentityProviders.GetAsync("domain_id");
