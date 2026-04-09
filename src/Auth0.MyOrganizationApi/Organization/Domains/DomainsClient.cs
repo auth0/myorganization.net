@@ -1,7 +1,7 @@
-using System.Text.Json;
 using Auth0.MyOrganizationApi;
 using Auth0.MyOrganizationApi.Core;
 using Auth0.MyOrganizationApi.Organization.Domains;
+using global::System.Text.Json;
 
 namespace Auth0.MyOrganizationApi.Organization;
 
@@ -21,11 +21,33 @@ public partial class DomainsClient : IDomainsClient
 
     public Auth0.MyOrganizationApi.Organization.Domains.IIdentityProvidersClient IdentityProviders { get; }
 
-    private async Task<WithRawResponse<ListOrganizationDomainsResponseContent>> ListAsyncCore(
+    /// <summary>
+    /// Retrieve a list of all pending and verified domains for this Organization.
+    /// </summary>
+    private WithRawResponseTask<ListOrganizationDomainsResponseContent> ListInternalAsync(
+        ListOrganizationDomainsRequestParameters request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
+        return new WithRawResponseTask<ListOrganizationDomainsResponseContent>(
+            ListInternalAsyncCore(request, options, cancellationToken)
+        );
+    }
+
+    private async Task<
+        WithRawResponse<ListOrganizationDomainsResponseContent>
+    > ListInternalAsyncCore(
+        ListOrganizationDomainsRequestParameters request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        var _queryString = new Auth0.MyOrganizationApi.Core.QueryStringBuilder.Builder(capacity: 2)
+            .Add("from", request.From.IsDefined ? request.From.Value : null)
+            .Add("take", request.Take.IsDefined ? request.Take.Value : null)
+            .MergeAdditional(options?.AdditionalQueryParameters)
+            .Build();
         var _headers = await new Auth0.MyOrganizationApi.Core.HeadersBuilder.Builder()
             .Add(_client.Options.Headers)
             .Add(_client.Options.AdditionalHeaders)
@@ -38,6 +60,7 @@ public partial class DomainsClient : IDomainsClient
                 {
                     Method = HttpMethod.Get,
                     Path = "domains",
+                    QueryString = _queryString,
                     Headers = _headers,
                     Options = options,
                 },
@@ -83,6 +106,8 @@ public partial class DomainsClient : IDomainsClient
             {
                 switch (response.StatusCode)
                 {
+                    case 400:
+                        throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
                         throw new UnauthorizedError(
                             JsonUtils.Deserialize<ErrorResponseContent>(responseBody)
@@ -309,23 +334,49 @@ public partial class DomainsClient : IDomainsClient
     }
 
     /// <summary>
-    /// Lists all domains pending and verified for an organization.
+    /// Retrieve a list of all pending and verified domains for this Organization.
     /// </summary>
     /// <example><code>
-    /// await client.Organization.Domains.ListAsync();
+    /// await client.Organization.Domains.ListAsync(
+    ///     new ListOrganizationDomainsRequestParameters { From = "from", Take = 1 }
+    /// );
     /// </code></example>
-    public WithRawResponseTask<ListOrganizationDomainsResponseContent> ListAsync(
+    public async Task<Pager<OrgDomain>> ListAsync(
+        ListOrganizationDomainsRequestParameters request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
-        return new WithRawResponseTask<ListOrganizationDomainsResponseContent>(
-            ListAsyncCore(options, cancellationToken)
-        );
+        if (request is not null)
+        {
+            request = request with { };
+        }
+        var pager = await CursorPager<
+            ListOrganizationDomainsRequestParameters,
+            RequestOptions?,
+            ListOrganizationDomainsResponseContent,
+            string?,
+            OrgDomain
+        >
+            .CreateInstanceAsync(
+                request,
+                options,
+                async (request, options, cancellationToken) =>
+                    await ListInternalAsync(request, options, cancellationToken),
+                (request, cursor) =>
+                {
+                    request.From = cursor;
+                },
+                response => response.Next,
+                response => response.OrganizationDomains?.ToList(),
+                cancellationToken
+            )
+            .ConfigureAwait(false);
+        return pager;
     }
 
     /// <summary>
-    /// Create a new domain for an organization.
+    /// Create a new domain for this Organization.
     /// </summary>
     /// <example><code>
     /// await client.Organization.Domains.CreateAsync(
@@ -344,7 +395,7 @@ public partial class DomainsClient : IDomainsClient
     }
 
     /// <summary>
-    /// Retrieve a domain for an organization.
+    /// Retrieve details of a domain specified by ID for this Organization.
     /// </summary>
     /// <example><code>
     /// await client.Organization.Domains.GetAsync("domain_id");
@@ -361,7 +412,7 @@ public partial class DomainsClient : IDomainsClient
     }
 
     /// <summary>
-    /// Remove a domain from this organization.
+    /// Remove a domain specified by ID from this Organization.
     /// </summary>
     /// <example><code>
     /// await client.Organization.Domains.DeleteAsync("domain_id");

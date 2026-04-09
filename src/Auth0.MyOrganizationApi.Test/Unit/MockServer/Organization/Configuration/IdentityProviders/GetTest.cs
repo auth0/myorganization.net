@@ -26,7 +26,7 @@ public class GetTest : BaseMockServerTest
                     "scim"
                   ]
                 },
-                "google-apps": {
+                "googleapps": {
                   "enabled_features": [
                     "provisioning"
                   ],
@@ -45,7 +45,7 @@ public class GetTest : BaseMockServerTest
                 "okta": {
                   "enabled_features": [
                     "provisioning",
-                    "logout"
+                    "universal_logout"
                   ],
                   "provisioning_methods": [
                     "scim"
@@ -62,7 +62,7 @@ public class GetTest : BaseMockServerTest
                 "samlp": {
                   "enabled_features": [
                     "provisioning",
-                    "logout"
+                    "universal_logout"
                   ],
                   "provisioning_methods": [
                     "scim"
@@ -76,9 +76,6 @@ public class GetTest : BaseMockServerTest
                     "scim"
                   ]
                 }
-              },
-              "domain_aliases_config": {
-                "domain_verification": "none"
               }
             }
             """;

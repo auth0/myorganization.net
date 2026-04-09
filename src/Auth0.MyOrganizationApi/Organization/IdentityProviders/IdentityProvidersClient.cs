@@ -1,7 +1,7 @@
-using System.Text.Json;
 using Auth0.MyOrganizationApi;
 using Auth0.MyOrganizationApi.Core;
 using Auth0.MyOrganizationApi.Organization.IdentityProviders;
+using global::System.Text.Json;
 
 namespace Auth0.MyOrganizationApi.Organization;
 
@@ -506,7 +506,7 @@ public partial class IdentityProvidersClient : IIdentityProvidersClient
     }
 
     /// <summary>
-    /// List the identity providers associated with this organization.
+    /// Retrieve a list of all Identity Providers for this Organization.
     /// </summary>
     /// <example><code>
     /// await client.Organization.IdentityProviders.ListAsync();
@@ -522,7 +522,7 @@ public partial class IdentityProvidersClient : IIdentityProvidersClient
     }
 
     /// <summary>
-    /// Create an identity provider associated with this organization.
+    /// Create a new Identity Provider for this Organization.
     /// </summary>
     /// <example><code>
     /// await client.Organization.IdentityProviders.CreateAsync(
@@ -557,7 +557,7 @@ public partial class IdentityProvidersClient : IIdentityProvidersClient
     }
 
     /// <summary>
-    /// Retrieve the details for one particular identity-provider.
+    /// Retrieve details of an Identity Provider specified by ID for this Organization.
     /// </summary>
     /// <example><code>
     /// await client.Organization.IdentityProviders.GetAsync("idp_id");
@@ -574,7 +574,7 @@ public partial class IdentityProvidersClient : IIdentityProvidersClient
     }
 
     /// <summary>
-    /// Delete an identity provider from this organization.
+    /// Delete an Identity Provider specified by ID from this Organization. This will remove the association and delete the underlying Identity Provider. Members will no longer be able to authenticate using this Identity Provider.
     /// </summary>
     /// <example><code>
     /// await client.Organization.IdentityProviders.DeleteAsync("idp_id");
@@ -651,7 +651,7 @@ public partial class IdentityProvidersClient : IIdentityProvidersClient
     }
 
     /// <summary>
-    /// Update an identity provider associated with this organization.
+    /// Update the details of an Identity Provider specified by ID for this Organization.
     /// </summary>
     /// <example><code>
     /// await client.Organization.IdentityProviders.UpdateAsync(
@@ -685,7 +685,7 @@ public partial class IdentityProvidersClient : IIdentityProvidersClient
     }
 
     /// <summary>
-    /// Triggers a refresh of attribute mappings on the identity provider by overriding it with the admin defined defaults. The endpoint doesn't accept any body parameters.
+    /// Refresh the attribute mapping for an Identity Provider specified by ID for this Organization. Mappings are reset to the admin-defined defaults.
     /// </summary>
     /// <example><code>
     /// await client.Organization.IdentityProviders.UpdateAttributesAsync(
@@ -706,7 +706,7 @@ public partial class IdentityProvidersClient : IIdentityProvidersClient
     }
 
     /// <summary>
-    /// Delete underlying identity provider from this organization.
+    /// Remove an Identity Provider specified by ID from this Organization. This only removes the association; the underlying Identity Provider is not deleted. Members will no longer be able to authenticate using this Identity Provider.
     /// </summary>
     /// <example><code>
     /// await client.Organization.IdentityProviders.DetachAsync("idp_id");

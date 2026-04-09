@@ -12,7 +12,7 @@
 <dl>
 <dd>
 
-Retrieve details for an Organization.
+Retrieve details for this Organization, including display name and branding options. To learn more about Auth0 Organizations, read [Organizations](https://auth0.com/docs/manage-users/organizations).
 </dd>
 </dl>
 </dd>
@@ -51,7 +51,7 @@ await client.OrganizationDetails.GetAsync();
 <dl>
 <dd>
 
-Update the details of a specific Organization, such as display name and branding options.
+Update details for this Organization, such as display name and branding options. To learn more about Auth0 Organizations, read [Organizations](https://auth0.com/docs/manage-users/organizations).
 </dd>
 </dl>
 </dd>
@@ -117,7 +117,7 @@ await client.OrganizationDetails.UpdateAsync(
 <dl>
 <dd>
 
-Retrieve the configuration for the /my-org API. This will return all stored client information with the exception of attributes that are identifiers. Identifier attributes will be given their own endpoint that will return the full object. This will give the components all of the information they will need to be successful. The SDK provider for the components should manage fetching and caching this information for all components.
+Retrieve the My Organization API configuration. Returns only the `connection_deletion_behavior` and `allowed_strategies`. Identifier attributes such as `user_attribute_profile_id` and `connection_profile_id` are not included. Cache this information, as it does not change frequently.
 </dd>
 </dl>
 </dd>
@@ -145,7 +145,7 @@ await client.Organization.Configuration.GetAsync();
 </details>
 
 ## Organization Domains
-<details><summary><code>client.Organization.Domains.<a href="/src/Auth0.MyOrganizationApi/Organization/Domains/DomainsClient.cs">ListAsync</a>() -> WithRawResponseTask&lt;ListOrganizationDomainsResponseContent&gt;</code></summary>
+<details><summary><code>client.Organization.Domains.<a href="/src/Auth0.MyOrganizationApi/Organization/Domains/DomainsClient.cs">ListAsync</a>(ListOrganizationDomainsRequestParameters { ... }) -> Pager&lt;OrgDomain&gt;</code></summary>
 <dl>
 <dd>
 
@@ -157,7 +157,7 @@ await client.Organization.Configuration.GetAsync();
 <dl>
 <dd>
 
-Lists all domains pending and verified for an organization.
+Retrieve a list of all pending and verified domains for this Organization.
 </dd>
 </dl>
 </dd>
@@ -172,8 +172,25 @@ Lists all domains pending and verified for an organization.
 <dd>
 
 ```csharp
-await client.Organization.Domains.ListAsync();
+await client.Organization.Domains.ListAsync(
+    new ListOrganizationDomainsRequestParameters { From = "from", Take = 1 }
+);
 ```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `ListOrganizationDomainsRequestParameters` 
+    
 </dd>
 </dl>
 </dd>
@@ -196,7 +213,7 @@ await client.Organization.Domains.ListAsync();
 <dl>
 <dd>
 
-Create a new domain for an organization.
+Create a new domain for this Organization.
 </dd>
 </dl>
 </dd>
@@ -252,7 +269,7 @@ await client.Organization.Domains.CreateAsync(
 <dl>
 <dd>
 
-Retrieve a domain for an organization.
+Retrieve details of a domain specified by ID for this Organization.
 </dd>
 </dl>
 </dd>
@@ -306,7 +323,7 @@ await client.Organization.Domains.GetAsync("domain_id");
 <dl>
 <dd>
 
-Remove a domain from this organization.
+Remove a domain specified by ID from this Organization.
 </dd>
 </dl>
 </dd>
@@ -361,7 +378,7 @@ await client.Organization.Domains.DeleteAsync("domain_id");
 <dl>
 <dd>
 
-List the identity providers associated with this organization.
+Retrieve a list of all Identity Providers for this Organization.
 </dd>
 </dl>
 </dd>
@@ -400,7 +417,7 @@ await client.Organization.IdentityProviders.ListAsync();
 <dl>
 <dd>
 
-Create an identity provider associated with this organization.
+Create a new Identity Provider for this Organization.
 </dd>
 </dl>
 </dd>
@@ -472,7 +489,7 @@ await client.Organization.IdentityProviders.CreateAsync(
 <dl>
 <dd>
 
-Retrieve the details for one particular identity-provider.
+Retrieve details of an Identity Provider specified by ID for this Organization.
 </dd>
 </dl>
 </dd>
@@ -526,7 +543,7 @@ await client.Organization.IdentityProviders.GetAsync("idp_id");
 <dl>
 <dd>
 
-Delete an identity provider from this organization.
+Delete an Identity Provider specified by ID from this Organization. This will remove the association and delete the underlying Identity Provider. Members will no longer be able to authenticate using this Identity Provider.
 </dd>
 </dl>
 </dd>
@@ -580,7 +597,7 @@ await client.Organization.IdentityProviders.DeleteAsync("idp_id");
 <dl>
 <dd>
 
-Update an identity provider associated with this organization.
+Update the details of an Identity Provider specified by ID for this Organization.
 </dd>
 </dl>
 </dd>
@@ -658,7 +675,7 @@ await client.Organization.IdentityProviders.UpdateAsync(
 <dl>
 <dd>
 
-Triggers a refresh of attribute mappings on the identity provider by overriding it with the admin defined defaults. The endpoint doesn't accept any body parameters.
+Refresh the attribute mapping for an Identity Provider specified by ID for this Organization. Mappings are reset to the admin-defined defaults.
 </dd>
 </dl>
 </dd>
@@ -723,7 +740,7 @@ await client.Organization.IdentityProviders.UpdateAttributesAsync(
 <dl>
 <dd>
 
-Delete underlying identity provider from this organization.
+Remove an Identity Provider specified by ID from this Organization. This only removes the association; the underlying Identity Provider is not deleted. Members will no longer be able to authenticate using this Identity Provider.
 </dd>
 </dl>
 </dd>
@@ -778,7 +795,7 @@ await client.Organization.IdentityProviders.DetachAsync("idp_id");
 <dl>
 <dd>
 
-Retrieve the connection profile for the application. This will give the components all of the information they will need to be successful. The SDK provider for the components should manage fetching and caching this information for all components.
+Retrieve the [Connection Profile](https://auth0.com/docs/authenticate/enterprise-connections/connection-profile) for this application. You should cache this information as it does not change frequently.
 </dd>
 </dl>
 </dd>
@@ -818,7 +835,7 @@ await client.Organization.Configuration.IdentityProviders.GetAsync();
 <dl>
 <dd>
 
-Get a verification text and start the domain verification process for a particular domain.
+Initiate the verification process for a domain specified by ID for this Organization.
 </dd>
 </dl>
 </dd>
@@ -873,7 +890,7 @@ await client.Organization.Domains.Verify.CreateAsync("domain_id");
 <dl>
 <dd>
 
-Retrieve the list of identity providers that have a specific organization domain alias.
+Retrieve the list of Identity Providers associated with a domain specified by ID for this Organization.
 </dd>
 </dl>
 </dd>
@@ -928,7 +945,7 @@ await client.Organization.Domains.IdentityProviders.GetAsync("domain_id");
 <dl>
 <dd>
 
-Add a domain to the identity provider's list of domains for [Home Realm Discovery (HRD)](https://auth0.com/docs/get-started/architecture-scenarios/business-to-business/authentication#home-realm-discovery). The domain passed must be claimed and verified by this organization.
+Associate a domain with an Identity Provider specified by ID for this Organization. The domain must be claimed and verified.
 </dd>
 </dl>
 </dd>
@@ -993,7 +1010,7 @@ await client.Organization.IdentityProviders.Domains.CreateAsync(
 <dl>
 <dd>
 
-Remove a domain from an identity provider.
+Remove a domain specified by name from an Identity Provider specified by ID for this Organization.
 </dd>
 </dl>
 </dd>
@@ -1056,7 +1073,7 @@ await client.Organization.IdentityProviders.Domains.DeleteAsync("idp_id", "domai
 <dl>
 <dd>
 
-Retrieve the Provisioning configuration for this identity provider.
+Retrieve the Provisioning Configuration for an Identity Provider specified by ID for this Organization.
 </dd>
 </dl>
 </dd>
@@ -1110,7 +1127,7 @@ await client.Organization.IdentityProviders.Provisioning.GetAsync("idp_id");
 <dl>
 <dd>
 
-Create the Provisioning configuration for this identity provider.
+Create a new Provisioning Configuration for an Identity Provider specified by ID for this Organization.
 </dd>
 </dl>
 </dd>
@@ -1164,7 +1181,7 @@ await client.Organization.IdentityProviders.Provisioning.CreateAsync("idp_id");
 <dl>
 <dd>
 
-Delete the Provisioning configuration for an identity provider.
+Delete the Provisioning Configuration for an Identity Provider specified by ID for this Organization.
 </dd>
 </dl>
 </dd>
@@ -1218,7 +1235,7 @@ await client.Organization.IdentityProviders.Provisioning.DeleteAsync("idp_id");
 <dl>
 <dd>
 
-Triggers a refresh of attribute mappings on the provisioning configuration by overriding it with the admin defined defaults. The endpoint doesn't accept any body parameters.
+Refresh the attribute mapping for the Provisioning Configuration of an Identity Provider specified by ID for this Organization. Mappings are reset to the admin-defined defaults.
 </dd>
 </dl>
 </dd>
@@ -1284,7 +1301,7 @@ await client.Organization.IdentityProviders.Provisioning.UpdateAttributesAsync(
 <dl>
 <dd>
 
-List the Provisioning SCIM tokens for this identity provider.
+Retrieve a list of [SCIM tokens](https://auth0.com/docs/authenticate/protocols/scim/configure-inbound-scim#scim-endpoints-and-tokens) for the Provisioning Configuration of an Identity Provider specified by ID for this Organization.
 </dd>
 </dl>
 </dd>
@@ -1338,7 +1355,7 @@ await client.Organization.IdentityProviders.Provisioning.ScimTokens.ListAsync("i
 <dl>
 <dd>
 
-Create a Provisioning SCIM token for this identity provider.
+Create a new SCIM token for the Provisioning Configuration of an Identity Provider specified by ID for this Organization.
 </dd>
 </dl>
 </dd>
@@ -1403,7 +1420,7 @@ await client.Organization.IdentityProviders.Provisioning.ScimTokens.CreateAsync(
 <dl>
 <dd>
 
-Delete a Provisioning SCIM configuration for an identity provider.
+Revoke a SCIM token specified by token ID for the Provisioning Configuration of an Identity Provider specified by ID for this Organization.
 </dd>
 </dl>
 </dd>

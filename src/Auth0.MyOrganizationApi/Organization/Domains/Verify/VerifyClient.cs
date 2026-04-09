@@ -1,6 +1,6 @@
-using System.Text.Json;
 using Auth0.MyOrganizationApi;
 using Auth0.MyOrganizationApi.Core;
+using global::System.Text.Json;
 
 namespace Auth0.MyOrganizationApi.Organization.Domains;
 
@@ -110,7 +110,7 @@ public partial class VerifyClient : IVerifyClient
     }
 
     /// <summary>
-    /// Get a verification text and start the domain verification process for a particular domain.
+    /// Initiate the verification process for a domain specified by ID for this Organization.
     /// </summary>
     /// <example><code>
     /// await client.Organization.Domains.Verify.CreateAsync("domain_id");

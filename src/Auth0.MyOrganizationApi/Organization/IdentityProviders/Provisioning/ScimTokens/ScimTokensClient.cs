@@ -1,6 +1,6 @@
-using System.Text.Json;
 using Auth0.MyOrganizationApi;
 using Auth0.MyOrganizationApi.Core;
+using global::System.Text.Json;
 
 namespace Auth0.MyOrganizationApi.Organization.IdentityProviders.Provisioning;
 
@@ -212,7 +212,7 @@ public partial class ScimTokensClient : IScimTokensClient
     }
 
     /// <summary>
-    /// List the Provisioning SCIM tokens for this identity provider.
+    /// Retrieve a list of [SCIM tokens](https://auth0.com/docs/authenticate/protocols/scim/configure-inbound-scim#scim-endpoints-and-tokens) for the Provisioning Configuration of an Identity Provider specified by ID for this Organization.
     /// </summary>
     /// <example><code>
     /// await client.Organization.IdentityProviders.Provisioning.ScimTokens.ListAsync("idp_id");
@@ -229,7 +229,7 @@ public partial class ScimTokensClient : IScimTokensClient
     }
 
     /// <summary>
-    /// Create a Provisioning SCIM token for this identity provider.
+    /// Create a new SCIM token for the Provisioning Configuration of an Identity Provider specified by ID for this Organization.
     /// </summary>
     /// <example><code>
     /// await client.Organization.IdentityProviders.Provisioning.ScimTokens.CreateAsync(
@@ -250,7 +250,7 @@ public partial class ScimTokensClient : IScimTokensClient
     }
 
     /// <summary>
-    /// Delete a Provisioning SCIM configuration for an identity provider.
+    /// Revoke a SCIM token specified by token ID for the Provisioning Configuration of an Identity Provider specified by ID for this Organization.
     /// </summary>
     /// <example><code>
     /// await client.Organization.IdentityProviders.Provisioning.ScimTokens.DeleteAsync(

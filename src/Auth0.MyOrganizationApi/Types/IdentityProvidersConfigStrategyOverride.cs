@@ -1,6 +1,6 @@
-using System.Text.Json;
-using System.Text.Json.Serialization;
 using Auth0.MyOrganizationApi.Core;
+using global::System.Text.Json;
+using global::System.Text.Json.Serialization;
 
 namespace Auth0.MyOrganizationApi;
 
@@ -19,8 +19,8 @@ public record IdentityProvidersConfigStrategyOverride : IJsonOnDeserialized
     public IdentityProvidersConfigStrategyBase? Adfs { get; set; }
 
     [Optional]
-    [JsonPropertyName("google-apps")]
-    public IdentityProvidersConfigStrategyBase? GoogleApps { get; set; }
+    [JsonPropertyName("googleapps")]
+    public IdentityProvidersConfigStrategyBase? Googleapps { get; set; }
 
     [Optional]
     [JsonPropertyName("oidc")]

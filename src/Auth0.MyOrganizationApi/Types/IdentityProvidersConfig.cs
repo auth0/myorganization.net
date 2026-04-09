@@ -1,6 +1,6 @@
-using System.Text.Json;
-using System.Text.Json.Serialization;
 using Auth0.MyOrganizationApi.Core;
+using global::System.Text.Json;
+using global::System.Text.Json.Serialization;
 
 namespace Auth0.MyOrganizationApi;
 
@@ -16,9 +16,6 @@ public record IdentityProvidersConfig : IJsonOnDeserialized
 
     [JsonPropertyName("strategies")]
     public required IdentityProvidersConfigStrategyOverride Strategies { get; set; }
-
-    [JsonPropertyName("domain_aliases_config")]
-    public required IdentityProvidersConfigDomainAlias DomainAliasesConfig { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

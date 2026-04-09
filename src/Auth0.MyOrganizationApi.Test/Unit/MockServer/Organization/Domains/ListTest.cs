@@ -1,5 +1,5 @@
+using Auth0.MyOrganizationApi.Organization;
 using Auth0.MyOrganizationApi.Test.Unit.MockServer;
-using Auth0.MyOrganizationApi.Test.Utils;
 using NUnit.Framework;
 
 namespace Auth0.MyOrganizationApi.Test.Unit.MockServer.Organization.Domains;
@@ -32,7 +32,14 @@ public class ListTest : BaseMockServerTest
             """;
 
         Server
-            .Given(WireMock.RequestBuilders.Request.Create().WithPath("/domains").UsingGet())
+            .Given(
+                WireMock
+                    .RequestBuilders.Request.Create()
+                    .WithPath("/domains")
+                    .WithParam("from", "from")
+                    .WithParam("take", "1")
+                    .UsingGet()
+            )
             .RespondWith(
                 WireMock
                     .ResponseBuilders.Response.Create()
@@ -40,7 +47,13 @@ public class ListTest : BaseMockServerTest
                     .WithBody(mockResponse)
             );
 
-        var response = await Client.Organization.Domains.ListAsync();
-        JsonAssert.AreEqual(response, mockResponse);
+        var items = await Client.Organization.Domains.ListAsync(
+            new ListOrganizationDomainsRequestParameters { From = "from", Take = 1 }
+        );
+        await foreach (var item in items)
+        {
+            Assert.That(item, Is.Not.Null);
+            break; // Only check the first item
+        }
     }
 }

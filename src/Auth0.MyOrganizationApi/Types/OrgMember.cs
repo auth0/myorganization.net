@@ -1,6 +1,6 @@
-using System.Text.Json;
-using System.Text.Json.Serialization;
 using Auth0.MyOrganizationApi.Core;
+using global::System.Text.Json;
+using global::System.Text.Json.Serialization;
 
 namespace Auth0.MyOrganizationApi;
 
@@ -15,14 +15,6 @@ public record OrgMember : IJsonOnDeserialized
     [Optional]
     [JsonPropertyName("user_id")]
     public string? UserId { get; set; }
-
-    /// <summary>
-    /// Is member a guest.
-    /// </summary>
-    [JsonAccess(JsonAccessType.ReadOnly)]
-    [Optional]
-    [JsonPropertyName("is_guest")]
-    public bool? IsGuest { get; set; }
 
     [JsonAccess(JsonAccessType.ReadOnly)]
     [Optional]

@@ -1,6 +1,6 @@
-using System.Text.Json;
 using Auth0.MyOrganizationApi;
 using Auth0.MyOrganizationApi.Core;
+using global::System.Text.Json;
 
 namespace Auth0.MyOrganizationApi.Organization.IdentityProviders;
 
@@ -119,7 +119,7 @@ public partial class DomainsClient : IDomainsClient
     }
 
     /// <summary>
-    /// Add a domain to the identity provider's list of domains for [Home Realm Discovery (HRD)](https://auth0.com/docs/get-started/architecture-scenarios/business-to-business/authentication#home-realm-discovery). The domain passed must be claimed and verified by this organization.
+    /// Associate a domain with an Identity Provider specified by ID for this Organization. The domain must be claimed and verified.
     /// </summary>
     /// <example><code>
     /// await client.Organization.IdentityProviders.Domains.CreateAsync(
@@ -140,7 +140,7 @@ public partial class DomainsClient : IDomainsClient
     }
 
     /// <summary>
-    /// Remove a domain from an identity provider.
+    /// Remove a domain specified by name from an Identity Provider specified by ID for this Organization.
     /// </summary>
     /// <example><code>
     /// await client.Organization.IdentityProviders.Domains.DeleteAsync("idp_id", "domain");

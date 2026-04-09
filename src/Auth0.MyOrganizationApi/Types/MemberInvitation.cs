@@ -1,6 +1,6 @@
-using System.Text.Json;
-using System.Text.Json.Serialization;
 using Auth0.MyOrganizationApi.Core;
+using global::System.Text.Json;
+using global::System.Text.Json.Serialization;
 
 namespace Auth0.MyOrganizationApi;
 
@@ -12,18 +12,22 @@ public record MemberInvitation : IJsonOnDeserialized
         new Dictionary<string, JsonElement>();
 
     [JsonAccess(JsonAccessType.ReadOnly)]
+    [Optional]
     [JsonPropertyName("id")]
-    public string Id { get; set; }
+    public string? Id { get; set; }
 
     [JsonAccess(JsonAccessType.ReadOnly)]
+    [Optional]
     [JsonPropertyName("organization_id")]
-    public string OrganizationId { get; set; }
+    public string? OrganizationId { get; set; }
 
+    [Optional]
     [JsonPropertyName("inviter")]
-    public required MemberInvitationInviter Inviter { get; set; }
+    public MemberInvitationInviter? Inviter { get; set; }
 
+    [Optional]
     [JsonPropertyName("invitee")]
-    public required MemberInvitationInvitee Invitee { get; set; }
+    public MemberInvitationInvitee? Invitee { get; set; }
 
     [JsonAccess(JsonAccessType.ReadOnly)]
     [Optional]
@@ -33,15 +37,18 @@ public record MemberInvitation : IJsonOnDeserialized
     /// <summary>
     /// The ISO 8601 formatted timestamp representing the creation time of the invitation.
     /// </summary>
+    [Optional]
     [JsonPropertyName("created_at")]
-    public required DateTime CreatedAt { get; set; }
+    public DateTime? CreatedAt { get; set; }
 
     /// <summary>
     /// The ISO 8601 formatted timestamp representing the expiration time of the invitation.
     /// </summary>
+    [Optional]
     [JsonPropertyName("expires_at")]
-    public required DateTime ExpiresAt { get; set; }
+    public DateTime? ExpiresAt { get; set; }
 
+    [JsonAccess(JsonAccessType.ReadOnly)]
     [Optional]
     [JsonPropertyName("roles")]
     public IEnumerable<string>? Roles { get; set; }
@@ -49,14 +56,16 @@ public record MemberInvitation : IJsonOnDeserialized
     /// <summary>
     /// The invitation url to be sent to the invitee.
     /// </summary>
+    [Optional]
     [JsonPropertyName("invitation_url")]
-    public required string InvitationUrl { get; set; }
+    public string? InvitationUrl { get; set; }
 
     /// <summary>
     /// The ID of the invitation ticket.
     /// </summary>
+    [Optional]
     [JsonPropertyName("ticket_id")]
-    public required string TicketId { get; set; }
+    public string? TicketId { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
