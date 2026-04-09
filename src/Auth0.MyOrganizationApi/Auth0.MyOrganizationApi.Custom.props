@@ -17,10 +17,25 @@ Configure additional MSBuild properties for your project in this file:
         <None Include="..\..\icon.png" Pack="true" PackagePath="" />
     </ItemGroup>
     -->
+    
   <PropertyGroup>
-    <PackageProjectUrl>https://github.com/atko-cic/myorganization.net</PackageProjectUrl>
+    <LangVersion>latest</LangVersion>
+    <Version>1.0.0-beta.0</Version>
+    <AssemblyVersionNumber>0.0.0</AssemblyVersionNumber>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyVersion>$(AssemblyVersionNumber)</AssemblyVersion>
+    <AssemblyFileVersion>$(AssemblyVersionNumber)</AssemblyFileVersion>
+    <InformationalVersion>$(Version)</InformationalVersion>
+    <PackageVersion>$(Version)</PackageVersion>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PackageProjectUrl>https://github.com/auth0/myorganization.net</PackageProjectUrl>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Auth0.AuthenticationApi" Version="7.45.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="../../build/Auth0Icon.png" Pack="true" Visible="false" PackagePath=""/>
   </ItemGroup>
 </Project>
