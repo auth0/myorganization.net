@@ -1,0 +1,84 @@
+name: Create NuGet and GitHub Release
+
+on:
+  pull_request:
+    types:
+      - closed
+
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+  id-token: write
+
+jobs:
+  rl-scanner-myorganization-api:
+    uses: ./.github/workflows/rl-secure.yml
+    with:
+      project-path: "src/Auth0.MyOrganizationApi/Auth0.MyOrganizationApi.csproj"
+      artifact-name: "Auth0.MyOrganizationApi.tgz"
+    secrets:
+      RLSECURE_LICENSE: ${{ secrets.RLSECURE_LICENSE }}
+      RLSECURE_SITE_KEY: ${{ secrets.RLSECURE_SITE_KEY }}
+      SIGNAL_HANDLER_TOKEN: ${{ secrets.SIGNAL_HANDLER_TOKEN }}
+      PRODSEC_TOOLS_USER: ${{ secrets.PRODSEC_TOOLS_USER }}
+      PRODSEC_TOOLS_TOKEN: ${{ secrets.PRODSEC_TOOLS_TOKEN }}
+      PRODSEC_TOOLS_ARN: ${{ secrets.PRODSEC_TOOLS_ARN }}
+
+  release:
+    needs: [rl-scanner-myorganization-api]
+    uses: ./.github/workflows/nuget-release.yml
+    with:
+      dotnet-version: 10.0.x
+      project-paths: "['src/Auth0.MyOrganizationApi/Auth0.MyOrganizationApi.csproj']"
+    secrets:
+      nuget-token: ${{ secrets.NUGET_APIKEY }}
+      github-token: ${{ secrets.GITHUB_TOKEN }}
+
+  generate-docs:
+    name: Generate API docs
+    needs: [release]
+    if: github.event_name == 'workflow_dispatch' || (github.event_name == 'pull_request' && github.event.pull_request.merged && startsWith(github.event.pull_request.head.ref, 'release/'))
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v5
+        with:
+          dotnet-version: 10.0.x
+
+      - name: Install DocFX
+        run: dotnet tool install -g docfx
+
+      - name: Build docs
+        run: docfx docs-source/docfx.json
+
+      - name: Uploading Artifacts
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: docs
+
+  deploy-docs:
+    needs: generate-docs
+    name: Deploy API docs
+    if: github.event_name == 'workflow_dispatch' || (github.event_name == 'pull_request' && github.event.pull_request.merged && startsWith(github.event.pull_request.head.ref, 'release/'))
+
+    permissions:
+      pages: write
+      id-token: write
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5
