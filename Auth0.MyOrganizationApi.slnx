@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="src/Auth0.MyOrganizationApi.Test/Auth0.MyOrganizationApi.Test.csproj" />
+  <Project Path="src/Auth0.MyOrganizationApi/Auth0.MyOrganizationApi.csproj" />
+</Solution>

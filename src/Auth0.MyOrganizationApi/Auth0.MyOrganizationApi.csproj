@@ -9,7 +9,7 @@
     <AssemblyVersion>$(Version)</AssemblyVersion>
     <FileVersion>$(Version)</FileVersion>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <PackageProjectUrl>https://github.com/fern-demo/auth0-myorg-csharp-sdk</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/auth0/myorganization.net</PackageProjectUrl>
     <PolySharpIncludeRuntimeSupportedAttributes>true</PolySharpIncludeRuntimeSupportedAttributes>
   </PropertyGroup>
 

@@ -5,7 +5,7 @@ using global::System.Text.Json.Serialization;
 namespace Auth0.MyOrganizationApi;
 
 [Serializable]
-public record OrgMemberRole : IJsonOnDeserialized
+public record Role : IJsonOnDeserialized
 {
     [JsonExtensionData]
     private readonly IDictionary<string, JsonElement> _extensionData =

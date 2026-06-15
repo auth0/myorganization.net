@@ -240,7 +240,6 @@ public partial class ProvisioningClient : IProvisioningClient
                     ),
                     Body = request,
                     Headers = _headers,
-                    ContentType = "application/json",
                     Options = options,
                 },
                 cancellationToken

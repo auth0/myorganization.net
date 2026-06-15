@@ -52,7 +52,6 @@ public class UpdateAttributesTest : BaseMockServerTest
                 WireMock
                     .RequestBuilders.Request.Create()
                     .WithPath("/identity-providers/idp_id/provisioning/update-attributes")
-                    .WithHeader("Content-Type", "application/json")
                     .UsingPut()
                     .WithBodyAsJson(requestJson)
             )
