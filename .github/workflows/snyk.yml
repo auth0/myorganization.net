@@ -47,4 +47,4 @@ jobs:
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
-          args: --file=Auth0.MyOrganizationApi.sln --severity-threshold=medium
+          args: --file=Auth0.MyOrganizationApi.sln --policy-path=.snyk --severity-threshold=medium
