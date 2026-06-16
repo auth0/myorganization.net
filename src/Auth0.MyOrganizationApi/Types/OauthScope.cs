@@ -168,11 +168,6 @@ public readonly record struct OauthScope : IStringEnum
     public static readonly OauthScope ReadMyOrgMembers = new(Values.ReadMyOrgMembers);
 
     /// <summary>
-    /// Delete members from organization and the underlying users
-    /// </summary>
-    public static readonly OauthScope DeleteMyOrgMembers = new(Values.DeleteMyOrgMembers);
-
-    /// <summary>
     /// Delete members from organization without deleting underlying users
     /// </summary>
     public static readonly OauthScope DeleteMyOrgMemberships = new(Values.DeleteMyOrgMemberships);
@@ -186,11 +181,6 @@ public readonly record struct OauthScope : IStringEnum
     /// Create Roles for members in organization
     /// </summary>
     public static readonly OauthScope CreateMyOrgMemberRoles = new(Values.CreateMyOrgMemberRoles);
-
-    /// <summary>
-    /// Update Roles for members in organization
-    /// </summary>
-    public static readonly OauthScope UpdateMyOrgMemberRoles = new(Values.UpdateMyOrgMemberRoles);
 
     /// <summary>
     /// Delete Roles from members for organization
@@ -448,11 +438,6 @@ public readonly record struct OauthScope : IStringEnum
         public const string ReadMyOrgMembers = "read:my_org:members";
 
         /// <summary>
-        /// Delete members from organization and the underlying users
-        /// </summary>
-        public const string DeleteMyOrgMembers = "delete:my_org:members";
-
-        /// <summary>
         /// Delete members from organization without deleting underlying users
         /// </summary>
         public const string DeleteMyOrgMemberships = "delete:my_org:memberships";
@@ -466,11 +451,6 @@ public readonly record struct OauthScope : IStringEnum
         /// Create Roles for members in organization
         /// </summary>
         public const string CreateMyOrgMemberRoles = "create:my_org:member_roles";
-
-        /// <summary>
-        /// Update Roles for members in organization
-        /// </summary>
-        public const string UpdateMyOrgMemberRoles = "update:my_org:member_roles";
 
         /// <summary>
         /// Delete Roles from members for organization

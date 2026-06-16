@@ -132,7 +132,6 @@ public partial class IdentityProvidersClient : IIdentityProvidersClient
                     Path = "identity-providers",
                     Body = request,
                     Headers = _headers,
-                    ContentType = "application/json",
                     Options = options,
                 },
                 cancellationToken
@@ -331,7 +330,6 @@ public partial class IdentityProvidersClient : IIdentityProvidersClient
                     ),
                     Body = request,
                     Headers = _headers,
-                    ContentType = "application/json",
                     Options = options,
                 },
                 cancellationToken
@@ -430,7 +428,6 @@ public partial class IdentityProvidersClient : IIdentityProvidersClient
                     ),
                     Body = request,
                     Headers = _headers,
-                    ContentType = "application/json",
                     Options = options,
                 },
                 cancellationToken

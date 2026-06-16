@@ -122,7 +122,6 @@ public partial class OrganizationDetailsClient : IOrganizationDetailsClient
                     Path = "details",
                     Body = request,
                     Headers = _headers,
-                    ContentType = "application/json",
                     Options = options,
                 },
                 cancellationToken

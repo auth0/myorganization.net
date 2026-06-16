@@ -19,7 +19,7 @@ public record OrgMember : IJsonOnDeserialized
     [JsonAccess(JsonAccessType.ReadOnly)]
     [Optional]
     [JsonPropertyName("roles")]
-    public IEnumerable<OrgMemberRole>? Roles { get; set; }
+    public IEnumerable<Role>? Roles { get; set; }
 
     /// <summary>
     /// Date and time when this user was created (ISO_8601 format).
@@ -44,6 +44,14 @@ public record OrgMember : IJsonOnDeserialized
     [Optional]
     [JsonPropertyName("last_login")]
     public DateTime? LastLogin { get; set; }
+
+    /// <summary>
+    /// Phone number associated with the user.
+    /// </summary>
+    [JsonAccess(JsonAccessType.ReadOnly)]
+    [Optional]
+    [JsonPropertyName("phone_number")]
+    public string? PhoneNumber { get; set; }
 
     /// <summary>
     /// Email

@@ -782,6 +782,508 @@ await client.Organization.IdentityProviders.DetachAsync("idp_id");
 </dl>
 </details>
 
+## Organization Members
+<details><summary><code>client.Organization.Members.<a href="/src/Auth0.MyOrganizationApi/Organization/Members/MembersClient.cs">ListAsync</a>(ListOrganizationMembersRequestParameters { ... }) -> Pager&lt;OrgMember&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieve a list of all members for this Organization. The `roles` field is only included for each member when the token also carries the `read:my_org:member_roles` scope; without that scope the `roles` field is omitted from the response.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Organization.Members.ListAsync(
+    new ListOrganizationMembersRequestParameters
+    {
+        Fields = "fields",
+        IncludeFields = true,
+        From = "from",
+        Take = 1,
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `ListOrganizationMembersRequestParameters` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.Organization.Members.<a href="/src/Auth0.MyOrganizationApi/Organization/Members/MembersClient.cs">GetAsync</a>(userId, GetOrganizationMemberRequestParameters { ... }) -> WithRawResponseTask&lt;OrgMember&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieve details of a member specified by user ID for this Organization.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Organization.Members.GetAsync(
+    "user_id",
+    new GetOrganizationMemberRequestParameters { Fields = "fields", IncludeFields = true }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**userId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `GetOrganizationMemberRequestParameters` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Organization Memberships
+<details><summary><code>client.Organization.Memberships.<a href="/src/Auth0.MyOrganizationApi/Organization/Memberships/MembershipsClient.cs">DeleteMembershipsAsync</a>(DeleteOrganizationMembershipsRequestParameters { ... })</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Remove one member from this Organization. The underlying user account is not deleted.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Organization.Memberships.DeleteMembershipsAsync(
+    new DeleteOrganizationMembershipsRequestParameters
+    {
+        Members = new List<string>() { "auth0|1234567890" },
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `DeleteOrganizationMembershipsRequestParameters` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Organization Invitations
+<details><summary><code>client.Organization.Invitations.<a href="/src/Auth0.MyOrganizationApi/Organization/Invitations/InvitationsClient.cs">ListAsync</a>(ListMemberInvitationsRequestParameters { ... }) -> Pager&lt;MemberInvitation&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieve a list of all member invitations for this Organization.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Organization.Invitations.ListAsync(
+    new ListMemberInvitationsRequestParameters
+    {
+        Fields = "fields",
+        IncludeFields = true,
+        From = "from",
+        Take = 1,
+        Sort = "sort",
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `ListMemberInvitationsRequestParameters` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.Organization.Invitations.<a href="/src/Auth0.MyOrganizationApi/Organization/Invitations/InvitationsClient.cs">CreateAsync</a>(CreateMemberInvitationRequestContent { ... }) -> WithRawResponseTask&lt;IEnumerable&lt;MemberInvitation&gt;&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Create one or more member invitations for this Organization. If an active invitation already exists for a user, generating a new invitation will automatically revoke any outstanding invitations for that user. Roles specified in the payload will be granted to the user upon acceptance of the invitation.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Organization.Invitations.CreateAsync(
+    new CreateMemberInvitationRequestContent
+    {
+        Invitees = new List<CreateMemberInvitationInvitee>()
+        {
+            new CreateMemberInvitationInvitee
+            {
+                Email = "user@example.com",
+                Roles = new List<string>() { "rol_0000000000000001" },
+            },
+        },
+        Inviter = new MemberInvitationInviter { Name = "Allison the Admin" },
+        IdentityProviderId = "con_2CZPv6IY0gWzDaQJ",
+        TtlSec = 3600,
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `CreateMemberInvitationRequestContent` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.Organization.Invitations.<a href="/src/Auth0.MyOrganizationApi/Organization/Invitations/InvitationsClient.cs">GetAsync</a>(invitationId, GetMemberInvitationRequestParameters { ... }) -> WithRawResponseTask&lt;MemberInvitation&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieve details of a member invitation specified by ID for this Organization.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Organization.Invitations.GetAsync(
+    "invitation_id",
+    new GetMemberInvitationRequestParameters { Fields = "fields", IncludeFields = true }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**invitationId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `GetMemberInvitationRequestParameters` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.Organization.Invitations.<a href="/src/Auth0.MyOrganizationApi/Organization/Invitations/InvitationsClient.cs">DeleteAsync</a>(invitationId)</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Revoke a member invitation specified by ID for this Organization.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Organization.Invitations.DeleteAsync("invitation_id");
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**invitationId:** `string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Organization Roles
+<details><summary><code>client.Organization.Roles.<a href="/src/Auth0.MyOrganizationApi/Organization/Roles/RolesClient.cs">ListAsync</a>(ListRolesRequestParameters { ... }) -> Pager&lt;Role&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieve the list of roles available for binding to members and invitations for this Organization. Only roles made visible to this Organization by the Tenant Admin are returned.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Organization.Roles.ListAsync(
+    new ListRolesRequestParameters
+    {
+        From = "from",
+        Take = 1,
+        Name = "name",
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `ListRolesRequestParameters` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## Organization Configuration IdentityProviders
 <details><summary><code>client.Organization.Configuration.IdentityProviders.<a href="/src/Auth0.MyOrganizationApi/Organization/Configuration/IdentityProviders/IdentityProvidersClient.cs">GetAsync</a>() -> WithRawResponseTask&lt;IdentityProvidersConfig&gt;</code></summary>
 <dl>
@@ -1462,6 +1964,208 @@ await client.Organization.IdentityProviders.Provisioning.ScimTokens.DeleteAsync(
 <dd>
 
 **idpScimTokenId:** `string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Organization Members Roles
+<details><summary><code>client.Organization.Members.Roles.<a href="/src/Auth0.MyOrganizationApi/Organization/Members/Roles/RolesClient.cs">ListAsync</a>(userId, ListOrgMemberRolesRequestParameters { ... }) -> Pager&lt;Role&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieve a list of roles assigned to a member specified by ID for this Organization.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Organization.Members.Roles.ListAsync(
+    "user_id",
+    new ListOrgMemberRolesRequestParameters { From = "from", Take = 1 }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**userId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `ListOrgMemberRolesRequestParameters` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.Organization.Members.Roles.<a href="/src/Auth0.MyOrganizationApi/Organization/Members/Roles/RolesClient.cs">AssignAsync</a>(userId, OrganizationMemberRolesChangeRequestContent { ... })</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Assign roles to a member specified by ID for this Organization.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Organization.Members.Roles.AssignAsync(
+    "user_id",
+    new OrganizationMemberRolesChangeRequestContent
+    {
+        RoleIds = new List<string>() { "rol_SO2j0sFo9NFa3F9w" },
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**userId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `OrganizationMemberRolesChangeRequestContent` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.Organization.Members.Roles.<a href="/src/Auth0.MyOrganizationApi/Organization/Members/Roles/RolesClient.cs">UnassignAsync</a>(userId, OrganizationMemberRolesChangeRequestContent { ... })</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Remove roles from a member specified by ID for this Organization.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Organization.Members.Roles.UnassignAsync(
+    "user_id",
+    new OrganizationMemberRolesChangeRequestContent
+    {
+        RoleIds = new List<string>() { "rol_SO2j0sFo9NFa3F9w" },
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**userId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `OrganizationMemberRolesChangeRequestContent` 
     
 </dd>
 </dl>
