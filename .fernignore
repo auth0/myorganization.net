@@ -13,3 +13,30 @@ src/Auth0.MyOrganizationApi.Test/Auth0.MyOrganizationApi.Test.Custom.props
 
 src/Auth0.MyOrganizationApi/Core/RawClient.cs
 src/Auth0.MyOrganizationApi/MyOrganizationApiClient.Internal.cs
+
+# GitHub configuration
+.github/CODEOWNERS
+.github/dependabot.yml
+
+# GitHub composite actions (all custom)
+.github/actions/
+
+# GitHub workflows (listed individually since Fern manages ci.yml in this folder)
+.github/workflows/build.yml
+.github/workflows/nuget-release.yml
+.github/workflows/release.yml
+.github/workflows/rl-secure.yml
+.github/workflows/snyk.yml
+
+# GitHub issue & PR templates
+.github/workflows/PULL_REQUEST_TEMPLATE.md
+.github/workflows/ISSUE_TEMPLATE/
+
+# Release / versioning
+.shiprc
+.version
+CHANGELOG.md
+
+# Project metadata & assets
+NOTICE
+build/Auth0Icon.png
