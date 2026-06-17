@@ -39,7 +39,7 @@ public partial interface IDomainsClient
     /// <summary>
     /// Remove a domain specified by ID from this Organization.
     /// </summary>
-    Task DeleteAsync(
+    WithRawResponseTask DeleteAsync(
         string domainId,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default

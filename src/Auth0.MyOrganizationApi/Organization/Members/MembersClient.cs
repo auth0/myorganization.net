@@ -80,7 +80,7 @@ public partial class MembersClient : IMembersClient
                 return new WithRawResponse<ListOrganizationMembersResponseContent>()
                 {
                     Data = responseData,
-                    RawResponse = new RawResponse()
+                    RawResponse = new Auth0.MyOrganizationApi.RawResponse()
                     {
                         StatusCode = response.Raw.StatusCode,
                         Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
@@ -94,7 +94,13 @@ public partial class MembersClient : IMembersClient
                     "Failed to deserialize response",
                     response.StatusCode,
                     null,
-                    e
+                    e,
+                    rawResponse: new Auth0.MyOrganizationApi.RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    }
                 );
             }
         }
@@ -107,22 +113,64 @@ public partial class MembersClient : IMembersClient
                 switch (response.StatusCode)
                 {
                     case 400:
-                        throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
+                        throw new BadRequestError(
+                            JsonUtils.Deserialize<object>(responseBody),
+                            rawResponse: new Auth0.MyOrganizationApi.RawResponse()
+                            {
+                                StatusCode = response.Raw.StatusCode,
+                                Url =
+                                    response.Raw.RequestMessage?.RequestUri
+                                    ?? new Uri("about:blank"),
+                                Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                            }
+                        );
                     case 401:
                         throw new UnauthorizedError(
-                            JsonUtils.Deserialize<ErrorResponseContent>(responseBody)
+                            JsonUtils.Deserialize<ErrorResponseContent>(responseBody),
+                            rawResponse: new Auth0.MyOrganizationApi.RawResponse()
+                            {
+                                StatusCode = response.Raw.StatusCode,
+                                Url =
+                                    response.Raw.RequestMessage?.RequestUri
+                                    ?? new Uri("about:blank"),
+                                Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                            }
                         );
                     case 403:
                         throw new ForbiddenError(
-                            JsonUtils.Deserialize<ErrorResponseContent>(responseBody)
+                            JsonUtils.Deserialize<ErrorResponseContent>(responseBody),
+                            rawResponse: new Auth0.MyOrganizationApi.RawResponse()
+                            {
+                                StatusCode = response.Raw.StatusCode,
+                                Url =
+                                    response.Raw.RequestMessage?.RequestUri
+                                    ?? new Uri("about:blank"),
+                                Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                            }
                         );
                     case 404:
                         throw new NotFoundError(
-                            JsonUtils.Deserialize<ErrorResponseContent>(responseBody)
+                            JsonUtils.Deserialize<ErrorResponseContent>(responseBody),
+                            rawResponse: new Auth0.MyOrganizationApi.RawResponse()
+                            {
+                                StatusCode = response.Raw.StatusCode,
+                                Url =
+                                    response.Raw.RequestMessage?.RequestUri
+                                    ?? new Uri("about:blank"),
+                                Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                            }
                         );
                     case 429:
                         throw new TooManyRequestsError(
-                            JsonUtils.Deserialize<ErrorResponseContent>(responseBody)
+                            JsonUtils.Deserialize<ErrorResponseContent>(responseBody),
+                            rawResponse: new Auth0.MyOrganizationApi.RawResponse()
+                            {
+                                StatusCode = response.Raw.StatusCode,
+                                Url =
+                                    response.Raw.RequestMessage?.RequestUri
+                                    ?? new Uri("about:blank"),
+                                Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                            }
                         );
                 }
             }
@@ -133,7 +181,13 @@ public partial class MembersClient : IMembersClient
             throw new MyOrganizationApiException(
                 $"Error with status code {response.StatusCode}",
                 response.StatusCode,
-                responseBody
+                responseBody,
+                rawResponse: new Auth0.MyOrganizationApi.RawResponse()
+                {
+                    StatusCode = response.Raw.StatusCode,
+                    Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                    Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                }
             );
         }
     }
@@ -183,7 +237,7 @@ public partial class MembersClient : IMembersClient
                 return new WithRawResponse<OrgMember>()
                 {
                     Data = responseData,
-                    RawResponse = new RawResponse()
+                    RawResponse = new Auth0.MyOrganizationApi.RawResponse()
                     {
                         StatusCode = response.Raw.StatusCode,
                         Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
@@ -197,7 +251,13 @@ public partial class MembersClient : IMembersClient
                     "Failed to deserialize response",
                     response.StatusCode,
                     null,
-                    e
+                    e,
+                    rawResponse: new Auth0.MyOrganizationApi.RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    }
                 );
             }
         }
@@ -210,22 +270,64 @@ public partial class MembersClient : IMembersClient
                 switch (response.StatusCode)
                 {
                     case 400:
-                        throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
+                        throw new BadRequestError(
+                            JsonUtils.Deserialize<object>(responseBody),
+                            rawResponse: new Auth0.MyOrganizationApi.RawResponse()
+                            {
+                                StatusCode = response.Raw.StatusCode,
+                                Url =
+                                    response.Raw.RequestMessage?.RequestUri
+                                    ?? new Uri("about:blank"),
+                                Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                            }
+                        );
                     case 401:
                         throw new UnauthorizedError(
-                            JsonUtils.Deserialize<ErrorResponseContent>(responseBody)
+                            JsonUtils.Deserialize<ErrorResponseContent>(responseBody),
+                            rawResponse: new Auth0.MyOrganizationApi.RawResponse()
+                            {
+                                StatusCode = response.Raw.StatusCode,
+                                Url =
+                                    response.Raw.RequestMessage?.RequestUri
+                                    ?? new Uri("about:blank"),
+                                Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                            }
                         );
                     case 403:
                         throw new ForbiddenError(
-                            JsonUtils.Deserialize<ErrorResponseContent>(responseBody)
+                            JsonUtils.Deserialize<ErrorResponseContent>(responseBody),
+                            rawResponse: new Auth0.MyOrganizationApi.RawResponse()
+                            {
+                                StatusCode = response.Raw.StatusCode,
+                                Url =
+                                    response.Raw.RequestMessage?.RequestUri
+                                    ?? new Uri("about:blank"),
+                                Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                            }
                         );
                     case 404:
                         throw new NotFoundError(
-                            JsonUtils.Deserialize<ErrorResponseContent>(responseBody)
+                            JsonUtils.Deserialize<ErrorResponseContent>(responseBody),
+                            rawResponse: new Auth0.MyOrganizationApi.RawResponse()
+                            {
+                                StatusCode = response.Raw.StatusCode,
+                                Url =
+                                    response.Raw.RequestMessage?.RequestUri
+                                    ?? new Uri("about:blank"),
+                                Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                            }
                         );
                     case 429:
                         throw new TooManyRequestsError(
-                            JsonUtils.Deserialize<ErrorResponseContent>(responseBody)
+                            JsonUtils.Deserialize<ErrorResponseContent>(responseBody),
+                            rawResponse: new Auth0.MyOrganizationApi.RawResponse()
+                            {
+                                StatusCode = response.Raw.StatusCode,
+                                Url =
+                                    response.Raw.RequestMessage?.RequestUri
+                                    ?? new Uri("about:blank"),
+                                Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                            }
                         );
                 }
             }
@@ -236,7 +338,13 @@ public partial class MembersClient : IMembersClient
             throw new MyOrganizationApiException(
                 $"Error with status code {response.StatusCode}",
                 response.StatusCode,
-                responseBody
+                responseBody,
+                rawResponse: new Auth0.MyOrganizationApi.RawResponse()
+                {
+                    StatusCode = response.Raw.StatusCode,
+                    Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                    Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                }
             );
         }
     }
@@ -276,7 +384,7 @@ public partial class MembersClient : IMembersClient
                 request,
                 options,
                 async (request, options, cancellationToken) =>
-                    await ListInternalAsync(request, options, cancellationToken),
+                    await ListInternalAsync(request, options, cancellationToken).WithRawResponse(),
                 (request, cursor) =>
                 {
                     request.From = cursor;

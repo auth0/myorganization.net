@@ -36,7 +36,7 @@ public partial interface IInvitationsClient
     /// <summary>
     /// Revoke a member invitation specified by ID for this Organization.
     /// </summary>
-    Task DeleteAsync(
+    WithRawResponseTask DeleteAsync(
         string invitationId,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default

@@ -17,7 +17,7 @@ public partial interface IDomainsClient
     /// <summary>
     /// Remove a domain specified by name from an Identity Provider specified by ID for this Organization.
     /// </summary>
-    Task DeleteAsync(
+    WithRawResponseTask DeleteAsync(
         string idpId,
         string domain,
         RequestOptions? options = null,

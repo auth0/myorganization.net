@@ -37,7 +37,7 @@ public partial interface IIdentityProvidersClient
     /// <summary>
     /// Delete an Identity Provider specified by ID from this Organization. This will remove the association and delete the underlying Identity Provider. Members will no longer be able to authenticate using this Identity Provider.
     /// </summary>
-    Task DeleteAsync(
+    WithRawResponseTask DeleteAsync(
         string idpId,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -66,7 +66,7 @@ public partial interface IIdentityProvidersClient
     /// <summary>
     /// Remove an Identity Provider specified by ID from this Organization. This only removes the association; the underlying Identity Provider is not deleted. Members will no longer be able to authenticate using this Identity Provider.
     /// </summary>
-    Task DetachAsync(
+    WithRawResponseTask DetachAsync(
         string idpId,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
