@@ -27,6 +27,7 @@ src/Auth0.MyOrganizationApi/MyOrganizationApiClient.Internal.cs
 .github/workflows/release.yml
 .github/workflows/rl-secure.yml
 .github/workflows/snyk.yml
+.snyk
 
 # GitHub issue & PR templates
 .github/workflows/PULL_REQUEST_TEMPLATE.md
