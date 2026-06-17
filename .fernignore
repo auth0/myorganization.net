@@ -41,3 +41,7 @@ CHANGELOG.md
 # Project metadata & assets
 NOTICE
 build/Auth0Icon.png
+
+# DocFX documentation
+docs-source/
+build-docs.sh

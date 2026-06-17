@@ -1,0 +1,58 @@
+{
+  "metadata": [
+    {
+      "src": [
+        {
+          "files": [
+            "src/Auth0.MyOrganizationApi/**/*.csproj"
+          ],
+          "src": ".."
+        }
+      ],
+      "dest": "api"
+    }
+  ],
+  "build": {
+    "content": [
+      {
+        "files": [
+          "api/**.yml",
+          "api/index.md"
+        ]
+      },
+      {
+        "files": [
+          "articles/**.md",
+          "articles/**/toc.yml",
+          "toc.yml",
+          "*.md"
+        ],
+        "exclude": [
+          "obj/**",
+          "../_site/**"
+        ]
+      }
+    ],
+    "resource": [
+      {
+        "files": [
+          "images/**"
+        ]
+      }
+    ],
+    "dest": "../docs",
+    "template": [
+      "default",
+      "modern",
+      "custom-template"
+    ],
+    "globalMetadata": {
+      "_appTitle": "Auth0 MyOrganization .NET SDK",
+      "_appFooter": "Auth0 MyOrganization .NET SDK",
+      "_enableSearch": true,
+      "_appLogoPath": "images/logo.png",
+      "_appFaviconPath": "images/logo.png",
+      "_enableNewTab": true
+    }
+  }
+}
