@@ -180,7 +180,7 @@ public class MyOrganizationClientTests
     }
 
     [TestCase("tenant.auth0.com/")]
-    [TestCase("tenant.auth0.com/my-org")]
+    [TestCase("tenant.auth0.com/my-org/v1")]
     public void Constructor_DomainWithSlash_ThrowsArgumentException(string domain)
     {
         var ex = Assert.Throws<ArgumentException>(() =>
@@ -216,7 +216,7 @@ public class MyOrganizationClientTests
             {
                 TokenProvider = new DelegateTokenProvider(_ => Task.FromResult("token")),
                 Domain = "https://tenant.auth0.com",
-                BaseUrl = "https://tenant.auth0.com/my-org",
+                BaseUrl = "https://tenant.auth0.com/my-org/v1",
             });
         });
     }
