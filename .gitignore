@@ -483,3 +483,10 @@ $RECYCLE.BIN/
 # Vim temporary swap files
 *.swp
 .fern/metadata.json
+
+# DocFX output
+_site/
+docs/
+docs-source/api/
+.docfx/
+docfx.zip

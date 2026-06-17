@@ -1,0 +1,8 @@
+- name: Getting Started
+  href: getting-started.md
+- name: Authentication
+  href: authentication.md
+- name: Configuration
+  href: configuration.md
+- name: Pagination & Error Handling
+  href: pagination-and-errors.md
