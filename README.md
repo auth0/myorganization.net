@@ -190,7 +190,7 @@ var client = new MyOrganizationApiClient(
     token: "<YOUR_API_TOKEN>",
     clientOptions: new ClientOptions
     {
-        BaseUrl = "https://<YOUR_AUTH0_DOMAIN>/my-org"
+        BaseUrl = "https://<YOUR_AUTH0_DOMAIN>/my-org/v1"
     }
 );
 ```
@@ -267,7 +267,7 @@ Available options:
 
 | Option | Description |
 |---|---|
-| `Domain` | Auth0 tenant domain (e.g. `"mytenant.auth0.com"`); used to construct the base URL as `https://{Domain}/my-org` |
+| `Domain` | Auth0 tenant domain (e.g. `"mytenant.auth0.com"`); used to construct the base URL as `https://{Domain}/my-org/v1` |
 | `BaseUrl` | Override the base URL directly; takes precedence over `Domain` |
 | `HttpClient` | Provide a custom `HttpClient` |
 | `AdditionalHeaders` | Set additional HTTP headers |
@@ -424,7 +424,7 @@ var client = new MyOrganizationClient(new MyOrganizationClientOptions
 
 ### Base URL
 
-The base URL defaults to `https://{domain}/my-org` when `Domain` is set.
+The base URL defaults to `https://{domain}/my-org/v1` when `Domain` is set.
 
 > **Note**
 > Use `BaseUrl` only in cases where the constructed URL does not match your environment, such as when using custom domains or a domain per organization.
@@ -434,7 +434,7 @@ using Auth0.MyOrganizationApi;
 
 var client = new MyOrganizationClient(new MyOrganizationClientOptions
 {
-    BaseUrl = "https://custom.example.com/my-org",
+    BaseUrl = "https://custom.example.com/my-org/v1",
     TokenProvider = ClientCredentialsTokenProvider
         .WithClientSecret(
             "<YOUR_AUTH0_DOMAIN>",

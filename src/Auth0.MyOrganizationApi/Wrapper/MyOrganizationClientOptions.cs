@@ -43,7 +43,7 @@ public sealed class MyOrganizationClientOptions
     /// The Auth0 domain for your tenant (e.g., <c>"your-tenant.auth0.com"</c>).
     /// </summary>
     /// <remarks>
-    /// Used to construct the Base URL as <c>https://{Domain}/my-org</c>.
+    /// Used to construct the Base URL as <c>https://{Domain}/my-org/v1</c>.
     /// Must not include a scheme prefix (e.g., do not use <c>"https://your-tenant.auth0.com"</c>).
     /// <para>
     /// Either <see cref="Domain"/> or <see cref="BaseUrl"/> must be set.
@@ -53,7 +53,7 @@ public sealed class MyOrganizationClientOptions
     public string? Domain { get; init; }
 
     /// <summary>
-    /// Explicit Base URL for the API (e.g., <c>"https://your-tenant.auth0.com/my-org"</c>).
+    /// Explicit Base URL for the API (e.g., <c>"https://your-tenant.auth0.com/my-org/v1"</c>).
     /// </summary>
     /// <remarks>
     /// When set, takes precedence over <see cref="Domain"/> and is used as-is.

@@ -10,7 +10,7 @@ namespace Auth0.MyOrganizationApi;
 /// <para>
 /// Configure the target tenant by setting <see cref="MyOrganizationClientOptions.Domain"/>
 /// (e.g., <c>"your-tenant.auth0.com"</c>). The Base URL is constructed automatically as
-/// <c>https://{Domain}/my-org</c>. Alternatively, set
+/// <c>https://{Domain}/my-org/v1</c>. Alternatively, set
 /// <see cref="MyOrganizationClientOptions.BaseUrl"/> directly to override this behaviour.
 /// </para>
 /// <para>
@@ -100,7 +100,7 @@ public sealed class MyOrganizationClient : MyOrganizationApiClient, IDisposable
         var domain = options.Domain?.Trim();
         var clientOptions = new ClientOptions
         {
-            BaseUrl = options.BaseUrl ?? $"https://{domain}/my-org",
+            BaseUrl = options.BaseUrl ?? $"https://{domain}/my-org/v1",
             HttpClient = options.HttpClient ?? new HttpClient(),
             Timeout = options.Timeout ?? TimeSpan.FromSeconds(30),
             MaxRetries = options.MaxRetries ?? 2,
