@@ -6,5 +6,6 @@ Configure additional MSBuild properties for your project in this file:
 <Project>
   <PropertyGroup>
     <TargetFramework>net10.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
 </Project>
