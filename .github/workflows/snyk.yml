@@ -30,12 +30,12 @@ jobs:
       - if: github.actor == 'dependabot[bot]' || github.event_name == 'merge_group'
         run: exit 0 # Skip unnecessary test runs for dependabot and merge queues. Artificially flag as successful, as this is a required check for branch protection.
 
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # pin@7.0.1
         with:
           ref: ${{ github.event.pull_request.merge_commit_sha || github.ref }}
 
       - name: Setup .NET
-        uses: actions/setup-dotnet@v6
+        uses: actions/setup-dotnet@a98b56852c35b8e3190ac28c8c2271da59106c68 # pin@6.0.0
         with:
           dotnet-version: "10.0.x"
 
