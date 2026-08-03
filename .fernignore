@@ -41,6 +41,8 @@ CHANGELOG.md
 # Project metadata & assets
 NOTICE
 build/Auth0Icon.png
+AGENTS.md
+CLAUDE.md
 
 # DocFX documentation
 docs-source/
