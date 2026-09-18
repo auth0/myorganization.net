@@ -11,15 +11,18 @@ public record OrgMember : IJsonOnDeserialized
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
-    [JsonAccess(JsonAccessType.ReadOnly)]
-    [Optional]
-    [JsonPropertyName("user_id")]
-    public string? UserId { get; set; }
-
+    /// <summary>
+    /// The member's roles. Only the first 10 roles are returned here; use GET /my-org/v1/members/{user_id}/roles to retrieve the full list. Only included when the token carries the read:my_org:member_roles scope and 'roles' is requested in the fields array.
+    /// </summary>
     [JsonAccess(JsonAccessType.ReadOnly)]
     [Optional]
     [JsonPropertyName("roles")]
     public IEnumerable<Role>? Roles { get; set; }
+
+    [JsonAccess(JsonAccessType.ReadOnly)]
+    [Optional]
+    [JsonPropertyName("user_id")]
+    public string? UserId { get; set; }
 
     /// <summary>
     /// Date and time when this user was created (ISO_8601 format).
@@ -44,6 +47,14 @@ public record OrgMember : IJsonOnDeserialized
     [Optional]
     [JsonPropertyName("last_login")]
     public DateTime? LastLogin { get; set; }
+
+    /// <summary>
+    /// The member's effective access level for this organization.
+    /// </summary>
+    [JsonAccess(JsonAccessType.ReadOnly)]
+    [Optional]
+    [JsonPropertyName("access_level")]
+    public OrganizationMemberAccessLevelEnum? AccessLevel { get; set; }
 
     /// <summary>
     /// Phone number associated with the user.

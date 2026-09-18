@@ -4,19 +4,21 @@ using global::System.Text.Json.Serialization;
 
 namespace Auth0.MyOrganizationApi;
 
+/// <summary>
+/// Cross-app access resource application configuration.
+/// </summary>
 [Serializable]
-public record FedMetadataXml : IJsonOnDeserialized
+public record CrossAppAccessResourceApp : IJsonOnDeserialized
 {
     [JsonExtensionData]
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
     /// <summary>
-    /// A Federation Metadata XML file in ADFS is a crucial document that serves as a blueprint for establishing trust between an ADFS server and other relying parties that want to consume identity information from ADFS.
+    /// The status of the cross-app access resource application role. To enable the cross-app access resource application role, OIDC issuer domain must be a verified domain for the organization.
     /// </summary>
-    [Optional]
-    [JsonPropertyName("fedMetadataXml")]
-    public string? FedMetadataXml_ { get; set; }
+    [JsonPropertyName("status")]
+    public required CrossAppAccessResourceAppStatusEnum Status { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

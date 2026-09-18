@@ -17,7 +17,13 @@ public class GetTest : BaseMockServerTest
                 "adfs",
                 "pingfederate"
               ],
-              "connection_deletion_behavior": "allow"
+              "connection_deletion_behavior": "allow",
+              "third_party_client_access": {
+                "default_value": "allow",
+                "allowed_values": [
+                  "allow"
+                ]
+              }
             }
             """;
 

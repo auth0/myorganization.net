@@ -34,6 +34,10 @@ public record OrgDetailsRead : IJsonOnDeserialized
     [JsonPropertyName("branding")]
     public OrgBranding? Branding { get; set; }
 
+    [Optional]
+    [JsonPropertyName("third_party_client_access")]
+    public OrgThirdPartyClientAccessEnum? ThirdPartyClientAccess { get; set; }
+
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
 

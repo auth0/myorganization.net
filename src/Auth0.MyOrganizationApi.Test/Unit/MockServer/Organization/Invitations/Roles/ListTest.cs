@@ -2,25 +2,27 @@ using Auth0.MyOrganizationApi.Test.Unit.MockServer;
 using Auth0.MyOrganizationApi.Test.Utils;
 using NUnit.Framework;
 
-namespace Auth0.MyOrganizationApi.Test.Unit.MockServer.Organization.Domains.IdentityProviders;
+namespace Auth0.MyOrganizationApi.Test.Unit.MockServer.Organization.Invitations.Roles;
 
 [TestFixture]
 [Parallelizable(ParallelScope.Self)]
-public class GetTest : BaseMockServerTest
+public class ListTest : BaseMockServerTest
 {
     [NUnit.Framework.Test]
     public async Task MockServerTest()
     {
         const string mockResponse = """
             {
-              "identity_providers": [
+              "roles": [
                 {
-                  "name": "acme-engineering",
-                  "display_name": "Acme Engineering"
+                  "id": "rol_BKW1BKIfBKd0BaI0",
+                  "name": "admin",
+                  "description": "Organization administrator"
                 },
                 {
-                  "name": "acme-engineering-2",
-                  "display_name": "Acme Engineering 2"
+                  "id": "rol_0000000000000001",
+                  "name": "member",
+                  "description": "description"
                 }
               ]
             }
@@ -30,7 +32,7 @@ public class GetTest : BaseMockServerTest
             .Given(
                 WireMock
                     .RequestBuilders.Request.Create()
-                    .WithPath("/domains/domain_id/identity-providers")
+                    .WithPath("/member-invitations/invitation_id/roles")
                     .UsingGet()
             )
             .RespondWith(
@@ -40,7 +42,7 @@ public class GetTest : BaseMockServerTest
                     .WithBody(mockResponse)
             );
 
-        var response = await Client.Organization.Domains.IdentityProviders.GetAsync("domain_id");
+        var response = await Client.Organization.Invitations.Roles.ListAsync("invitation_id");
         JsonAssert.AreEqual(response, mockResponse);
     }
 }

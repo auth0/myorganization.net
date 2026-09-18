@@ -13,7 +13,7 @@ public partial class IdentityProvidersClient : IIdentityProvidersClient
         _client = client;
     }
 
-    private async Task<WithRawResponse<ListDomainIdentityProvidersResponseContent>> GetAsyncCore(
+    private async Task<WithRawResponse<ListDomainIdentityProvidersResponseContent>> ListAsyncCore(
         string domainId,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -116,16 +116,16 @@ public partial class IdentityProvidersClient : IIdentityProvidersClient
     /// Retrieve the list of Identity Providers associated with a domain specified by ID for this Organization.
     /// </summary>
     /// <example><code>
-    /// await client.Organization.Domains.IdentityProviders.GetAsync("domain_id");
+    /// await client.Organization.Domains.IdentityProviders.ListAsync("domain_id");
     /// </code></example>
-    public WithRawResponseTask<ListDomainIdentityProvidersResponseContent> GetAsync(
+    public WithRawResponseTask<ListDomainIdentityProvidersResponseContent> ListAsync(
         string domainId,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
         return new WithRawResponseTask<ListDomainIdentityProvidersResponseContent>(
-            GetAsyncCore(domainId, options, cancellationToken)
+            ListAsyncCore(domainId, options, cancellationToken)
         );
     }
 }

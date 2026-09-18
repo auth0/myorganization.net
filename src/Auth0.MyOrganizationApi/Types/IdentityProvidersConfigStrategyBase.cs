@@ -25,6 +25,10 @@ public record IdentityProvidersConfigStrategyBase : IJsonOnDeserialized
     public IEnumerable<IdentityProvidersConfigProvisioningMethodsEnum> ProvisioningMethods { get; set; } =
         new List<IdentityProvidersConfigProvisioningMethodsEnum>();
 
+    [Nullable, Optional]
+    [JsonPropertyName("provisioning")]
+    public Optional<IdentityProvidersConfigProvisioningConfiguration?> Provisioning { get; set; }
+
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
 

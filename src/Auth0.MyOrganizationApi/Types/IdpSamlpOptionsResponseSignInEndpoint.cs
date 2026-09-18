@@ -5,18 +5,25 @@ using global::System.Text.Json.Serialization;
 namespace Auth0.MyOrganizationApi;
 
 [Serializable]
-public record Automatic : IJsonOnDeserialized
+public record IdpSamlpOptionsResponseSignInEndpoint : IJsonOnDeserialized
 {
     [JsonExtensionData]
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
     /// <summary>
-    /// URL provided by SAML provider which returns information used for creating the connection
+    /// The endpoint URL for the IdP sign-in
     /// </summary>
     [Optional]
-    [JsonPropertyName("metadataUrl")]
-    public string? MetadataUrl { get; set; }
+    [JsonPropertyName("signInEndpoint")]
+    public string? SignInEndpoint { get; set; }
+
+    /// <summary>
+    /// Signing certificate (encoded in PEM or CER) you retrieved from the IdP
+    /// </summary>
+    [Optional]
+    [JsonPropertyName("cert")]
+    public string? Cert { get; set; }
 
     /// <summary>
     /// When enabled, the SAML authentication request will be signed.
@@ -44,13 +51,6 @@ public record Automatic : IJsonOnDeserialized
     [JsonPropertyName("bindingMethod")]
     public string? BindingMethod { get; set; }
 
-    /// <summary>
-    /// Signing certificate (encoded in PEM or CER) you retrieved from the IdP
-    /// </summary>
-    [Optional]
-    [JsonPropertyName("cert")]
-    public string? Cert { get; set; }
-
     [Optional]
     [JsonPropertyName("idpInitiated")]
     public IdpOptionsIdpInitiated? IdpInitiated { get; set; }
@@ -61,6 +61,13 @@ public record Automatic : IJsonOnDeserialized
     [Optional]
     [JsonPropertyName("icon_url")]
     public string? IconUrl { get; set; }
+
+    /// <summary>
+    /// OIDC discovery URL of the trusted OIDC provider associated with the SAML IdP. Triggers auto-discovery of the OIDC metadata used to validate ID-JAGs for cross-app access.
+    /// </summary>
+    [Optional]
+    [JsonPropertyName("discovery_url")]
+    public string? DiscoveryUrl { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

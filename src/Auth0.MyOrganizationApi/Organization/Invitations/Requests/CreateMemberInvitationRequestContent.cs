@@ -19,11 +19,18 @@ public record CreateMemberInvitationRequestContent
     public MemberInvitationInviter? Inviter { get; set; }
 
     /// <summary>
-    /// Identity provider identifier.
+    /// Identity provider identifier. At least one of identity_provider_id or user_store_id must be provided.
     /// </summary>
     [Optional]
     [JsonPropertyName("identity_provider_id")]
     public string? IdentityProviderId { get; set; }
+
+    /// <summary>
+    /// The user store to route the invitation through. At least one of identity_provider_id or user_store_id must be provided.
+    /// </summary>
+    [Optional]
+    [JsonPropertyName("user_store_id")]
+    public string? UserStoreId { get; set; }
 
     /// <summary>
     /// Number of seconds for which the invitation is valid before expiration. If unspecified or set to 0, this value defaults to 604800 seconds (7 days). Max value: 2592000 seconds (30 days).

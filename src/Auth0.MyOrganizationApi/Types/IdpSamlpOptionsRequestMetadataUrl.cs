@@ -5,32 +5,23 @@ using global::System.Text.Json.Serialization;
 namespace Auth0.MyOrganizationApi;
 
 [Serializable]
-public record Manual : IJsonOnDeserialized
+public record IdpSamlpOptionsRequestMetadataUrl : IJsonOnDeserialized
 {
     [JsonExtensionData]
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
     /// <summary>
-    /// The endpoint URL for the IdP sign-in
+    /// URL provided by SAML provider which returns information used for creating the connection
     /// </summary>
-    [Optional]
-    [JsonPropertyName("signInEndpoint")]
-    public string? SignInEndpoint { get; set; }
-
-    /// <summary>
-    /// Signing certificate (encoded in PEM or CER) you retrieved from the IdP
-    /// </summary>
-    [Optional]
-    [JsonPropertyName("cert")]
-    public string? Cert { get; set; }
+    [JsonPropertyName("metadataUrl")]
+    public required string MetadataUrl { get; set; }
 
     /// <summary>
     /// When enabled, the SAML authentication request will be signed.
     /// </summary>
-    [Optional]
     [JsonPropertyName("signSAMLRequest")]
-    public bool? SignSamlRequest { get; set; }
+    public required bool SignSamlRequest { get; set; }
 
     [Optional]
     [JsonPropertyName("signatureAlgorithm")]
@@ -51,6 +42,13 @@ public record Manual : IJsonOnDeserialized
     [JsonPropertyName("bindingMethod")]
     public string? BindingMethod { get; set; }
 
+    /// <summary>
+    /// Signing certificate (encoded in PEM or CER) you retrieved from the IdP. Optional for this variant: when omitted, the certificate is read from the metadata document.
+    /// </summary>
+    [Optional]
+    [JsonPropertyName("signingCert")]
+    public string? SigningCert { get; set; }
+
     [Optional]
     [JsonPropertyName("idpInitiated")]
     public IdpOptionsIdpInitiated? IdpInitiated { get; set; }
@@ -61,6 +59,13 @@ public record Manual : IJsonOnDeserialized
     [Optional]
     [JsonPropertyName("icon_url")]
     public string? IconUrl { get; set; }
+
+    /// <summary>
+    /// OIDC discovery URL of the trusted OIDC provider associated with the SAML IdP. Triggers auto-discovery of the OIDC metadata used to validate ID-JAGs for cross-app access.
+    /// </summary>
+    [Optional]
+    [JsonPropertyName("discovery_url")]
+    public string? DiscoveryUrl { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

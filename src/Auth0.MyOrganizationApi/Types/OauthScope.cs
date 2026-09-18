@@ -207,6 +207,18 @@ public readonly record struct OauthScope : IStringEnum
     /// </summary>
     public static readonly OauthScope DeleteMyOrgClients = new(Values.DeleteMyOrgClients);
 
+    /// <summary>
+    /// Read user stores for an organization
+    /// </summary>
+    public static readonly OauthScope ReadMyOrgUserStores = new(Values.ReadMyOrgUserStores);
+
+    /// <summary>
+    /// Delete this organization
+    /// </summary>
+    public static readonly OauthScope DeleteMyOrgOrganizations = new(
+        Values.DeleteMyOrgOrganizations
+    );
+
     public OauthScope(string value)
     {
         Value = value;
@@ -476,5 +488,15 @@ public readonly record struct OauthScope : IStringEnum
         /// Delete API clients for organization
         /// </summary>
         public const string DeleteMyOrgClients = "delete:my_org:clients";
+
+        /// <summary>
+        /// Read user stores for an organization
+        /// </summary>
+        public const string ReadMyOrgUserStores = "read:my_org:user_stores";
+
+        /// <summary>
+        /// Delete this organization
+        /// </summary>
+        public const string DeleteMyOrgOrganizations = "delete:my_org:organizations";
     }
 }

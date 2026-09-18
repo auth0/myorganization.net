@@ -19,7 +19,7 @@ public partial interface IMembersClient
     /// <summary>
     /// Retrieve details of a member specified by user ID for this Organization.
     /// </summary>
-    WithRawResponseTask<OrgMember> GetAsync(
+    WithRawResponseTask<OrgMemberBase> GetAsync(
         string userId,
         GetOrganizationMemberRequestParameters request,
         RequestOptions? options = null,

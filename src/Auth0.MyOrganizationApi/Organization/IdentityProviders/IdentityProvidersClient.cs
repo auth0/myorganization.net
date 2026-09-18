@@ -21,10 +21,16 @@ public partial class IdentityProvidersClient : IIdentityProvidersClient
     public IProvisioningClient Provisioning { get; }
 
     private async Task<WithRawResponse<ListIdentityProvidersResponseContent>> ListAsyncCore(
+        ListOrganizationIdentityProvidersRequestParameters request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
+        var _queryString = new Auth0.MyOrganizationApi.Core.QueryStringBuilder.Builder(capacity: 2)
+            .Add("member_access_level", request.MemberAccessLevel)
+            .Add("is_enabled", request.IsEnabled.IsDefined ? request.IsEnabled.Value : null)
+            .MergeAdditional(options?.AdditionalQueryParameters)
+            .Build();
         var _headers = await new Auth0.MyOrganizationApi.Core.HeadersBuilder.Builder()
             .Add(_client.Options.Headers)
             .Add(_client.Options.AdditionalHeaders)
@@ -37,6 +43,7 @@ public partial class IdentityProvidersClient : IIdentityProvidersClient
                 {
                     Method = HttpMethod.Get,
                     Path = "identity-providers",
+                    QueryString = _queryString,
                     Headers = _headers,
                     Options = options,
                 },
@@ -82,6 +89,8 @@ public partial class IdentityProvidersClient : IIdentityProvidersClient
             {
                 switch (response.StatusCode)
                 {
+                    case 400:
+                        throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
                         throw new UnauthorizedError(
                             JsonUtils.Deserialize<ErrorResponseContent>(responseBody)
@@ -503,23 +512,33 @@ public partial class IdentityProvidersClient : IIdentityProvidersClient
     }
 
     /// <summary>
-    /// Retrieve a list of all Identity Providers for this Organization.
+    /// Retrieve the comprehensive list of identity providers and their respective configurations associated with an Auth0 Organization.
     /// </summary>
     /// <example><code>
-    /// await client.Organization.IdentityProviders.ListAsync();
+    /// await client.Organization.IdentityProviders.ListAsync(
+    ///     new ListOrganizationIdentityProvidersRequestParameters
+    ///     {
+    ///         MemberAccessLevel =
+    ///         [
+    ///             new List&lt;OrganizationAccessLevelEnum?&gt;() { OrganizationAccessLevelEnum.None },
+    ///         ],
+    ///         IsEnabled = true,
+    ///     }
+    /// );
     /// </code></example>
     public WithRawResponseTask<ListIdentityProvidersResponseContent> ListAsync(
+        ListOrganizationIdentityProvidersRequestParameters request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
         return new WithRawResponseTask<ListIdentityProvidersResponseContent>(
-            ListAsyncCore(options, cancellationToken)
+            ListAsyncCore(request, options, cancellationToken)
         );
     }
 
     /// <summary>
-    /// Create a new Identity Provider for this Organization.
+    /// Create a new enterprise Identity Provider utilizing the specified configuration settings and details for this Auth0 Organization.
     /// </summary>
     /// <example><code>
     /// await client.Organization.IdentityProviders.CreateAsync(

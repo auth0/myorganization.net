@@ -36,7 +36,8 @@ public class UpdateTest : BaseMockServerTest
                   "primary": "#000000",
                   "page_background": "#FFFFFF"
                 }
-              }
+              },
+              "third_party_client_access": "allow"
             }
             """;
 

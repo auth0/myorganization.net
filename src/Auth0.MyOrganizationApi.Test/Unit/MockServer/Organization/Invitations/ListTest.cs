@@ -57,6 +57,7 @@ public class ListTest : BaseMockServerTest
                 From = "from",
                 Take = 1,
                 Sort = "sort",
+                IncludeTotals = true,
             }
         );
         await foreach (var item in items)

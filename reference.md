@@ -1,5 +1,44 @@
 # Reference
 ## OrganizationDetails
+<details><summary><code>client.OrganizationDetails.<a href="/src/Auth0.MyOrganizationApi/OrganizationDetails/OrganizationDetailsClient.cs">DeleteAsync</a>()</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Permanently delete this Organization.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.OrganizationDetails.DeleteAsync();
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.OrganizationDetails.<a href="/src/Auth0.MyOrganizationApi/OrganizationDetails/OrganizationDetailsClient.cs">GetAsync</a>() -> WithRawResponseTask&lt;OrgDetailsRead&gt;</code></summary>
 <dl>
 <dd>
@@ -144,6 +183,70 @@ await client.Organization.Configuration.GetAsync();
 </dl>
 </details>
 
+## Organization UserStores
+<details><summary><code>client.Organization.UserStores.<a href="/src/Auth0.MyOrganizationApi/Organization/UserStores/UserStoresClient.cs">ListAsync</a>(ListOrganizationUserStoresRequestParameters { ... }) -> WithRawResponseTask&lt;ListUserStoresResponseContent&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieve the user stores for the associated Organization.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Organization.UserStores.ListAsync(
+    new ListOrganizationUserStoresRequestParameters
+    {
+        MemberAccessLevel =
+        [
+            new List<OrganizationAccessLevelEnum?>() { OrganizationAccessLevelEnum.None },
+        ],
+        IsEnabled = true,
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `ListOrganizationUserStoresRequestParameters` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## Organization Domains
 <details><summary><code>client.Organization.Domains.<a href="/src/Auth0.MyOrganizationApi/Organization/Domains/DomainsClient.cs">ListAsync</a>(ListOrganizationDomainsRequestParameters { ... }) -> Pager&lt;OrgDomain&gt;</code></summary>
 <dl>
@@ -213,7 +316,7 @@ await client.Organization.Domains.ListAsync(
 <dl>
 <dd>
 
-Create a new domain for this Organization.
+Create a domain for an Auth0 Organization and optionally enable Organization Discovery for members during the user login flow
 </dd>
 </dl>
 </dd>
@@ -269,7 +372,7 @@ await client.Organization.Domains.CreateAsync(
 <dl>
 <dd>
 
-Retrieve details of a domain specified by ID for this Organization.
+Retrieve the details of an Auth0 Organization domain using its unique domain ID, including the domain name and its current verification status.
 </dd>
 </dl>
 </dd>
@@ -323,7 +426,7 @@ await client.Organization.Domains.GetAsync("domain_id");
 <dl>
 <dd>
 
-Remove a domain specified by ID from this Organization.
+Delete an Auth0 Organization domain using its unique domain ID, including all associated details and verification status.
 </dd>
 </dl>
 </dd>
@@ -366,7 +469,7 @@ await client.Organization.Domains.DeleteAsync("domain_id");
 </details>
 
 ## Organization IdentityProviders
-<details><summary><code>client.Organization.IdentityProviders.<a href="/src/Auth0.MyOrganizationApi/Organization/IdentityProviders/IdentityProvidersClient.cs">ListAsync</a>() -> WithRawResponseTask&lt;ListIdentityProvidersResponseContent&gt;</code></summary>
+<details><summary><code>client.Organization.IdentityProviders.<a href="/src/Auth0.MyOrganizationApi/Organization/IdentityProviders/IdentityProvidersClient.cs">ListAsync</a>(ListOrganizationIdentityProvidersRequestParameters { ... }) -> WithRawResponseTask&lt;ListIdentityProvidersResponseContent&gt;</code></summary>
 <dl>
 <dd>
 
@@ -378,7 +481,7 @@ await client.Organization.Domains.DeleteAsync("domain_id");
 <dl>
 <dd>
 
-Retrieve a list of all Identity Providers for this Organization.
+Retrieve the comprehensive list of identity providers and their respective configurations associated with an Auth0 Organization.
 </dd>
 </dl>
 </dd>
@@ -393,8 +496,32 @@ Retrieve a list of all Identity Providers for this Organization.
 <dd>
 
 ```csharp
-await client.Organization.IdentityProviders.ListAsync();
+await client.Organization.IdentityProviders.ListAsync(
+    new ListOrganizationIdentityProvidersRequestParameters
+    {
+        MemberAccessLevel =
+        [
+            new List<OrganizationAccessLevelEnum?>() { OrganizationAccessLevelEnum.None },
+        ],
+        IsEnabled = true,
+    }
+);
 ```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `ListOrganizationIdentityProvidersRequestParameters` 
+    
 </dd>
 </dl>
 </dd>
@@ -417,7 +544,7 @@ await client.Organization.IdentityProviders.ListAsync();
 <dl>
 <dd>
 
-Create a new Identity Provider for this Organization.
+Create a new enterprise Identity Provider utilizing the specified configuration settings and details for this Auth0 Organization.
 </dd>
 </dl>
 </dd>
@@ -817,6 +944,7 @@ await client.Organization.Members.ListAsync(
         IncludeFields = true,
         From = "from",
         Take = 1,
+        IncludeTotals = true,
     }
 );
 ```
@@ -845,7 +973,7 @@ await client.Organization.Members.ListAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Organization.Members.<a href="/src/Auth0.MyOrganizationApi/Organization/Members/MembersClient.cs">GetAsync</a>(userId, GetOrganizationMemberRequestParameters { ... }) -> WithRawResponseTask&lt;OrgMember&gt;</code></summary>
+<details><summary><code>client.Organization.Members.<a href="/src/Auth0.MyOrganizationApi/Organization/Members/MembersClient.cs">GetAsync</a>(userId, GetOrganizationMemberRequestParameters { ... }) -> WithRawResponseTask&lt;OrgMemberBase&gt;</code></summary>
 <dl>
 <dd>
 
@@ -1006,6 +1134,7 @@ await client.Organization.Invitations.ListAsync(
         From = "from",
         Take = 1,
         Sort = "sort",
+        IncludeTotals = true,
     }
 );
 ```
@@ -1103,6 +1232,70 @@ await client.Organization.Invitations.CreateAsync(
 </dl>
 </details>
 
+<details><summary><code>client.Organization.Invitations.<a href="/src/Auth0.MyOrganizationApi/Organization/Invitations/InvitationsClient.cs">DeleteAsync</a>(DeleteMemberInvitationsRequestContent { ... })</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Revoke a set of member invitations specified by IDs for this Organization.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Organization.Invitations.DeleteAsync(
+    new DeleteMemberInvitationsRequestContent
+    {
+        Invitations = new List<string>()
+        {
+            "uinv_0000000000000001",
+            "uinv_0000000000000002",
+            "uinv_0000000000000003",
+        },
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `DeleteMemberInvitationsRequestContent` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.Organization.Invitations.<a href="/src/Auth0.MyOrganizationApi/Organization/Invitations/InvitationsClient.cs">GetAsync</a>(invitationId, GetMemberInvitationRequestParameters { ... }) -> WithRawResponseTask&lt;MemberInvitation&gt;</code></summary>
 <dl>
 <dd>
@@ -1157,60 +1350,6 @@ await client.Organization.Invitations.GetAsync(
 <dd>
 
 **request:** `GetMemberInvitationRequestParameters` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.Organization.Invitations.<a href="/src/Auth0.MyOrganizationApi/Organization/Invitations/InvitationsClient.cs">DeleteAsync</a>(invitationId)</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Revoke a member invitation specified by ID for this Organization.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```csharp
-await client.Organization.Invitations.DeleteAsync("invitation_id");
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**invitationId:** `string` 
     
 </dd>
 </dl>
@@ -1380,7 +1519,7 @@ await client.Organization.Domains.Verify.CreateAsync("domain_id");
 </details>
 
 ## Organization Domains IdentityProviders
-<details><summary><code>client.Organization.Domains.IdentityProviders.<a href="/src/Auth0.MyOrganizationApi/Organization/Domains/IdentityProviders/IdentityProvidersClient.cs">GetAsync</a>(domainId) -> WithRawResponseTask&lt;ListDomainIdentityProvidersResponseContent&gt;</code></summary>
+<details><summary><code>client.Organization.Domains.IdentityProviders.<a href="/src/Auth0.MyOrganizationApi/Organization/Domains/IdentityProviders/IdentityProvidersClient.cs">ListAsync</a>(domainId) -> WithRawResponseTask&lt;ListDomainIdentityProvidersResponseContent&gt;</code></summary>
 <dl>
 <dd>
 
@@ -1407,7 +1546,7 @@ Retrieve the list of Identity Providers associated with a domain specified by ID
 <dd>
 
 ```csharp
-await client.Organization.Domains.IdentityProviders.GetAsync("domain_id");
+await client.Organization.Domains.IdentityProviders.ListAsync("domain_id");
 ```
 </dd>
 </dl>
@@ -1964,6 +2103,61 @@ await client.Organization.IdentityProviders.Provisioning.ScimTokens.DeleteAsync(
 <dd>
 
 **idpScimTokenId:** `string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Organization Invitations Roles
+<details><summary><code>client.Organization.Invitations.Roles.<a href="/src/Auth0.MyOrganizationApi/Organization/Invitations/Roles/RolesClient.cs">ListAsync</a>(invitationId) -> WithRawResponseTask&lt;GetMemberInvitationRolesResponseContent&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieve the roles assigned to a member invitation specified by ID for this Organization.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Organization.Invitations.Roles.ListAsync("invitation_id");
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**invitationId:** `string` 
     
 </dd>
 </dl>

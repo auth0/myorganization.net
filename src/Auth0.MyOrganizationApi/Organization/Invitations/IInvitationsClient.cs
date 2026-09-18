@@ -5,6 +5,8 @@ namespace Auth0.MyOrganizationApi.Organization;
 
 public partial interface IInvitationsClient
 {
+    public Auth0.MyOrganizationApi.Organization.Invitations.IRolesClient Roles { get; }
+
     /// <summary>
     /// Retrieve a list of all member invitations for this Organization.
     /// </summary>
@@ -24,20 +26,20 @@ public partial interface IInvitationsClient
     );
 
     /// <summary>
-    /// Retrieve details of a member invitation specified by ID for this Organization.
+    /// Revoke a set of member invitations specified by IDs for this Organization.
     /// </summary>
-    WithRawResponseTask<MemberInvitation> GetAsync(
-        string invitationId,
-        GetMemberInvitationRequestParameters request,
+    Task DeleteAsync(
+        DeleteMemberInvitationsRequestContent request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     );
 
     /// <summary>
-    /// Revoke a member invitation specified by ID for this Organization.
+    /// Retrieve details of a member invitation specified by ID for this Organization.
     /// </summary>
-    Task DeleteAsync(
+    WithRawResponseTask<MemberInvitation> GetAsync(
         string invitationId,
+        GetMemberInvitationRequestParameters request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     );

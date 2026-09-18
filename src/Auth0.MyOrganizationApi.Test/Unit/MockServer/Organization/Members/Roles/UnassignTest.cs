@@ -23,8 +23,8 @@ public class UnassignTest : BaseMockServerTest
             .Given(
                 WireMock
                     .RequestBuilders.Request.Create()
-                    .WithPath("/members/user_id/roles")
-                    .UsingDelete()
+                    .WithPath("/members/user_id/unassign-roles")
+                    .UsingPost()
                     .WithBodyAsJson(requestJson)
             )
             .RespondWith(WireMock.ResponseBuilders.Response.Create().WithStatusCode(200));

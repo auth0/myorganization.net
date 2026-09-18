@@ -38,7 +38,7 @@ public partial class MembersClient : IMembersClient
         CancellationToken cancellationToken = default
     )
     {
-        var _queryString = new Auth0.MyOrganizationApi.Core.QueryStringBuilder.Builder(capacity: 4)
+        var _queryString = new Auth0.MyOrganizationApi.Core.QueryStringBuilder.Builder(capacity: 5)
             .Add("fields", request.Fields.IsDefined ? request.Fields.Value : null)
             .Add(
                 "include_fields",
@@ -46,6 +46,10 @@ public partial class MembersClient : IMembersClient
             )
             .Add("from", request.From.IsDefined ? request.From.Value : null)
             .Add("take", request.Take.IsDefined ? request.Take.Value : null)
+            .Add(
+                "include_totals",
+                request.IncludeTotals.IsDefined ? request.IncludeTotals.Value : null
+            )
             .MergeAdditional(options?.AdditionalQueryParameters)
             .Build();
         var _headers = await new Auth0.MyOrganizationApi.Core.HeadersBuilder.Builder()
@@ -138,7 +142,7 @@ public partial class MembersClient : IMembersClient
         }
     }
 
-    private async Task<WithRawResponse<OrgMember>> GetAsyncCore(
+    private async Task<WithRawResponse<OrgMemberBase>> GetAsyncCore(
         string userId,
         GetOrganizationMemberRequestParameters request,
         RequestOptions? options = null,
@@ -179,8 +183,8 @@ public partial class MembersClient : IMembersClient
                 .ConfigureAwait(false);
             try
             {
-                var responseData = JsonUtils.Deserialize<OrgMember>(responseBody)!;
-                return new WithRawResponse<OrgMember>()
+                var responseData = JsonUtils.Deserialize<OrgMemberBase>(responseBody)!;
+                return new WithRawResponse<OrgMemberBase>()
                 {
                     Data = responseData,
                     RawResponse = new RawResponse()
@@ -252,6 +256,7 @@ public partial class MembersClient : IMembersClient
     ///         IncludeFields = true,
     ///         From = "from",
     ///         Take = 1,
+    ///         IncludeTotals = true,
     ///     }
     /// );
     /// </code></example>
@@ -298,14 +303,14 @@ public partial class MembersClient : IMembersClient
     ///     new GetOrganizationMemberRequestParameters { Fields = "fields", IncludeFields = true }
     /// );
     /// </code></example>
-    public WithRawResponseTask<OrgMember> GetAsync(
+    public WithRawResponseTask<OrgMemberBase> GetAsync(
         string userId,
         GetOrganizationMemberRequestParameters request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
-        return new WithRawResponseTask<OrgMember>(
+        return new WithRawResponseTask<OrgMemberBase>(
             GetAsyncCore(userId, request, options, cancellationToken)
         );
     }

@@ -50,6 +50,7 @@ public class ListTest : BaseMockServerTest
                 IncludeFields = true,
                 From = "from",
                 Take = 1,
+                IncludeTotals = true,
             }
         );
         await foreach (var item in items)
