@@ -24,11 +24,11 @@ public record IdentityProvidersConfigStrategyOverride : IJsonOnDeserialized
 
     [Optional]
     [JsonPropertyName("oidc")]
-    public IdentityProvidersConfigStrategyBase? Oidc { get; set; }
+    public IdentityProviderConfigOidc? Oidc { get; set; }
 
     [Optional]
     [JsonPropertyName("okta")]
-    public IdentityProvidersConfigStrategyBase? Okta { get; set; }
+    public IdentityProviderConfigOkta? Okta { get; set; }
 
     [Optional]
     [JsonPropertyName("pingfederate")]
@@ -36,7 +36,7 @@ public record IdentityProvidersConfigStrategyOverride : IJsonOnDeserialized
 
     [Optional]
     [JsonPropertyName("samlp")]
-    public IdentityProvidersConfigStrategyBase? Samlp { get; set; }
+    public IdentityProviderConfigSamlp? Samlp { get; set; }
 
     [Optional]
     [JsonPropertyName("waad")]

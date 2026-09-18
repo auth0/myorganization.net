@@ -22,6 +22,10 @@ public record GetConfigurationResponseContent : IJsonOnDeserialized
     [JsonPropertyName("connection_deletion_behavior")]
     public IdpConnectionDeletionBehaviorEnum? ConnectionDeletionBehavior { get; set; }
 
+    [Optional]
+    [JsonPropertyName("third_party_client_access")]
+    public OrgThirdPartyClientAccessConfig? ThirdPartyClientAccess { get; set; }
+
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
 

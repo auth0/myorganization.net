@@ -9,15 +9,16 @@ public partial interface IIdentityProvidersClient
     public IProvisioningClient Provisioning { get; }
 
     /// <summary>
-    /// Retrieve a list of all Identity Providers for this Organization.
+    /// Retrieve the comprehensive list of identity providers and their respective configurations associated with an Auth0 Organization.
     /// </summary>
     WithRawResponseTask<ListIdentityProvidersResponseContent> ListAsync(
+        ListOrganizationIdentityProvidersRequestParameters request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     );
 
     /// <summary>
-    /// Create a new Identity Provider for this Organization.
+    /// Create a new enterprise Identity Provider utilizing the specified configuration settings and details for this Auth0 Organization.
     /// </summary>
     WithRawResponseTask<IdpKnownResponse> CreateAsync(
         IdpKnownRequest request,

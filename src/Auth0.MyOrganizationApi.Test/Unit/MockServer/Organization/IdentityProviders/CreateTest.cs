@@ -45,6 +45,11 @@ public class CreateTest : BaseMockServerTest
               "assign_membership_on_login": false,
               "is_enabled": true,
               "access_level": "full",
+              "member_access_level": "none",
+              "use_for_third_party_client_access": true,
+              "cross_app_access_resource_app": {
+                "status": "enabled"
+              },
               "options": {
                 "type": "front_channel",
                 "client_id": "client_a8f3b2e7-5d1c-4f9a-8b0d-2e1c3a5b6f7did",

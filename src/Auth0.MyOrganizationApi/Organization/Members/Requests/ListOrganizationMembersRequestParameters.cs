@@ -30,6 +30,12 @@ public record ListOrganizationMembersRequestParameters
     [JsonIgnore]
     public Optional<int?> Take { get; set; } = 50;
 
+    /// <summary>
+    /// When true, the response includes a 'total' count of items in the result set (reflecting any active filters), along with a 'total_is_capped' flag. The count is best-effort and capped at 1000; when the true size may be larger, 'total_is_capped' is true and 'total' is a lower bound. Omitted when not requested.
+    /// </summary>
+    [JsonIgnore]
+    public Optional<bool?> IncludeTotals { get; set; } = false;
+
     /// <inheritdoc />
     public override string ToString()
     {

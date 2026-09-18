@@ -294,9 +294,9 @@ public partial class RolesClient : IRolesClient
             .SendRequestAsync(
                 new JsonRequest
                 {
-                    Method = HttpMethod.Delete,
+                    Method = HttpMethod.Post,
                     Path = string.Format(
-                        "members/{0}/roles",
+                        "members/{0}/unassign-roles",
                         ValueConvert.ToPathParameterString(userId)
                     ),
                     Body = request,

@@ -11,7 +11,10 @@ public partial class InvitationsClient : IInvitationsClient
     internal InvitationsClient(RawClient client)
     {
         _client = client;
+        Roles = new Auth0.MyOrganizationApi.Organization.Invitations.RolesClient(_client);
     }
+
+    public Auth0.MyOrganizationApi.Organization.Invitations.IRolesClient Roles { get; }
 
     /// <summary>
     /// Retrieve a list of all member invitations for this Organization.
@@ -35,7 +38,7 @@ public partial class InvitationsClient : IInvitationsClient
         CancellationToken cancellationToken = default
     )
     {
-        var _queryString = new Auth0.MyOrganizationApi.Core.QueryStringBuilder.Builder(capacity: 5)
+        var _queryString = new Auth0.MyOrganizationApi.Core.QueryStringBuilder.Builder(capacity: 6)
             .Add("fields", request.Fields.IsDefined ? request.Fields.Value : null)
             .Add(
                 "include_fields",
@@ -44,6 +47,10 @@ public partial class InvitationsClient : IInvitationsClient
             .Add("from", request.From.IsDefined ? request.From.Value : null)
             .Add("take", request.Take.IsDefined ? request.Take.Value : null)
             .Add("sort", request.Sort.IsDefined ? request.Sort.Value : null)
+            .Add(
+                "include_totals",
+                request.IncludeTotals.IsDefined ? request.IncludeTotals.Value : null
+            )
             .MergeAdditional(options?.AdditionalQueryParameters)
             .Build();
         var _headers = await new Auth0.MyOrganizationApi.Core.HeadersBuilder.Builder()
@@ -352,6 +359,7 @@ public partial class InvitationsClient : IInvitationsClient
     ///         From = "from",
     ///         Take = 1,
     ///         Sort = "sort",
+    ///         IncludeTotals = true,
     ///     }
     /// );
     /// </code></example>
@@ -422,34 +430,23 @@ public partial class InvitationsClient : IInvitationsClient
     }
 
     /// <summary>
-    /// Retrieve details of a member invitation specified by ID for this Organization.
+    /// Revoke a set of member invitations specified by IDs for this Organization.
     /// </summary>
     /// <example><code>
-    /// await client.Organization.Invitations.GetAsync(
-    ///     "invitation_id",
-    ///     new GetMemberInvitationRequestParameters { Fields = "fields", IncludeFields = true }
+    /// await client.Organization.Invitations.DeleteAsync(
+    ///     new DeleteMemberInvitationsRequestContent
+    ///     {
+    ///         Invitations = new List&lt;string&gt;()
+    ///         {
+    ///             "uinv_0000000000000001",
+    ///             "uinv_0000000000000002",
+    ///             "uinv_0000000000000003",
+    ///         },
+    ///     }
     /// );
     /// </code></example>
-    public WithRawResponseTask<MemberInvitation> GetAsync(
-        string invitationId,
-        GetMemberInvitationRequestParameters request,
-        RequestOptions? options = null,
-        CancellationToken cancellationToken = default
-    )
-    {
-        return new WithRawResponseTask<MemberInvitation>(
-            GetAsyncCore(invitationId, request, options, cancellationToken)
-        );
-    }
-
-    /// <summary>
-    /// Revoke a member invitation specified by ID for this Organization.
-    /// </summary>
-    /// <example><code>
-    /// await client.Organization.Invitations.DeleteAsync("invitation_id");
-    /// </code></example>
     public async Task DeleteAsync(
-        string invitationId,
+        DeleteMemberInvitationsRequestContent request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
@@ -464,12 +461,11 @@ public partial class InvitationsClient : IInvitationsClient
             .SendRequestAsync(
                 new JsonRequest
                 {
-                    Method = HttpMethod.Delete,
-                    Path = string.Format(
-                        "member-invitations/{0}",
-                        ValueConvert.ToPathParameterString(invitationId)
-                    ),
+                    Method = HttpMethod.Post,
+                    Path = "delete-member-invitations",
+                    Body = request,
                     Headers = _headers,
+                    ContentType = "application/json",
                     Options = options,
                 },
                 cancellationToken
@@ -517,5 +513,26 @@ public partial class InvitationsClient : IInvitationsClient
                 responseBody
             );
         }
+    }
+
+    /// <summary>
+    /// Retrieve details of a member invitation specified by ID for this Organization.
+    /// </summary>
+    /// <example><code>
+    /// await client.Organization.Invitations.GetAsync(
+    ///     "invitation_id",
+    ///     new GetMemberInvitationRequestParameters { Fields = "fields", IncludeFields = true }
+    /// );
+    /// </code></example>
+    public WithRawResponseTask<MemberInvitation> GetAsync(
+        string invitationId,
+        GetMemberInvitationRequestParameters request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return new WithRawResponseTask<MemberInvitation>(
+            GetAsyncCore(invitationId, request, options, cancellationToken)
+        );
     }
 }

@@ -19,7 +19,7 @@ public partial interface IDomainsClient
     );
 
     /// <summary>
-    /// Create a new domain for this Organization.
+    /// Create a domain for an Auth0 Organization and optionally enable Organization Discovery for members during the user login flow
     /// </summary>
     WithRawResponseTask<OrgDomain> CreateAsync(
         CreateOrganizationDomainRequestContent request,
@@ -28,7 +28,7 @@ public partial interface IDomainsClient
     );
 
     /// <summary>
-    /// Retrieve details of a domain specified by ID for this Organization.
+    /// Retrieve the details of an Auth0 Organization domain using its unique domain ID, including the domain name and its current verification status.
     /// </summary>
     WithRawResponseTask<OrgDomain> GetAsync(
         string domainId,
@@ -37,7 +37,7 @@ public partial interface IDomainsClient
     );
 
     /// <summary>
-    /// Remove a domain specified by ID from this Organization.
+    /// Delete an Auth0 Organization domain using its unique domain ID, including all associated details and verification status.
     /// </summary>
     Task DeleteAsync(
         string domainId,

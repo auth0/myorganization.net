@@ -40,7 +40,12 @@ public class GetTest : BaseMockServerTest
                   ],
                   "provisioning_methods": [
                     "scim"
-                  ]
+                  ],
+                  "cross_app_access_resource_app": {
+                    "status": {
+                      "default_value": "enabled"
+                    }
+                  }
                 },
                 "okta": {
                   "enabled_features": [
@@ -49,7 +54,12 @@ public class GetTest : BaseMockServerTest
                   ],
                   "provisioning_methods": [
                     "scim"
-                  ]
+                  ],
+                  "cross_app_access_resource_app": {
+                    "status": {
+                      "default_value": "enabled"
+                    }
+                  }
                 },
                 "pingfederate": {
                   "enabled_features": [
@@ -66,7 +76,12 @@ public class GetTest : BaseMockServerTest
                   ],
                   "provisioning_methods": [
                     "scim"
-                  ]
+                  ],
+                  "cross_app_access_resource_app": {
+                    "status": {
+                      "default_value": "enabled"
+                    }
+                  }
                 },
                 "waad": {
                   "enabled_features": [

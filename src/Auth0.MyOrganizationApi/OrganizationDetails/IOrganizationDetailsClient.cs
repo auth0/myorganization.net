@@ -3,6 +3,11 @@ namespace Auth0.MyOrganizationApi;
 public partial interface IOrganizationDetailsClient
 {
     /// <summary>
+    /// Permanently delete this Organization.
+    /// </summary>
+    Task DeleteAsync(RequestOptions? options = null, CancellationToken cancellationToken = default);
+
+    /// <summary>
     /// Retrieve details for this Organization, including display name and branding options. To learn more about Auth0 Organizations, read [Organizations](https://auth0.com/docs/manage-users/organizations).
     /// </summary>
     WithRawResponseTask<OrgDetailsRead> GetAsync(

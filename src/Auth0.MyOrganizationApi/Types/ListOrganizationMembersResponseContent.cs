@@ -18,6 +18,22 @@ public record ListOrganizationMembersResponseContent : IJsonOnDeserialized
     [JsonPropertyName("next")]
     public string? Next { get; set; }
 
+    /// <summary>
+    /// Best-effort count of members in the result set (reflecting any active filters). Only present when include_totals=true. Capped at 1000.
+    /// </summary>
+    [JsonAccess(JsonAccessType.ReadOnly)]
+    [Optional]
+    [JsonPropertyName("total")]
+    public int? Total { get; set; }
+
+    /// <summary>
+    /// Whether counting stopped before reaching the true size of the result set. When true, 'total' is a lower bound (the true size is 'total' or greater); when false, 'total' reflects the full result set as counted. Only present when 'total' is present.
+    /// </summary>
+    [JsonAccess(JsonAccessType.ReadOnly)]
+    [Optional]
+    [JsonPropertyName("total_is_capped")]
+    public bool? TotalIsCapped { get; set; }
+
     [Optional]
     [JsonPropertyName("members")]
     public IEnumerable<OrgMember>? Members { get; set; }

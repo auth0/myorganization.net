@@ -10,6 +10,7 @@ public partial class OrganizationClient : IOrganizationClient
     {
         _client = client;
         Configuration = new ConfigurationClient(_client);
+        UserStores = new UserStoresClient(_client);
         Domains = new DomainsClient(_client);
         IdentityProviders = new IdentityProvidersClient(_client);
         Members = new MembersClient(_client);
@@ -19,6 +20,8 @@ public partial class OrganizationClient : IOrganizationClient
     }
 
     public IConfigurationClient Configuration { get; }
+
+    public IUserStoresClient UserStores { get; }
 
     public IDomainsClient Domains { get; }
 

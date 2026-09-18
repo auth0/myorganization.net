@@ -34,6 +34,11 @@ public record MemberInvitation : IJsonOnDeserialized
     [JsonPropertyName("identity_provider_id")]
     public string? IdentityProviderId { get; set; }
 
+    [JsonAccess(JsonAccessType.ReadOnly)]
+    [Optional]
+    [JsonPropertyName("user_store_id")]
+    public string? UserStoreId { get; set; }
+
     /// <summary>
     /// The ISO 8601 formatted timestamp representing the creation time of the invitation.
     /// </summary>

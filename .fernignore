@@ -22,16 +22,8 @@ src/Auth0.MyOrganizationApi/MyOrganizationApiClient.Internal.cs
 .github/actions/
 
 # GitHub workflows (listed individually since Fern manages ci.yml in this folder)
-.github/workflows/build.yml
-.github/workflows/nuget-release.yml
-.github/workflows/release.yml
-.github/workflows/rl-secure.yml
-.github/workflows/snyk.yml
+.github/workflows/
 .snyk
-
-# GitHub issue & PR templates
-.github/workflows/PULL_REQUEST_TEMPLATE.md
-.github/workflows/ISSUE_TEMPLATE/
 
 # Release / versioning
 .shiprc
@@ -43,7 +35,11 @@ NOTICE
 build/Auth0Icon.png
 AGENTS.md
 CLAUDE.md
+references/
 
 # DocFX documentation
 docs-source/
 build-docs.sh
+.fern/replay.lock
+.fern/replay.yml
+.gitattributes

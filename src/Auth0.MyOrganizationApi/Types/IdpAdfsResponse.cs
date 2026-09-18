@@ -20,8 +20,9 @@ public record IdpAdfsResponse : IJsonOnDeserialized
     /// <summary>
     /// Identity provider specific options.
     /// </summary>
+    [Optional]
     [JsonPropertyName("options")]
-    public required IdpAdfsOptionsResponse Options { get; set; }
+    public IdpAdfsOptionsResponse? Options { get; set; }
 
     [Optional]
     [JsonPropertyName("id")]
@@ -72,6 +73,27 @@ public record IdpAdfsResponse : IJsonOnDeserialized
     [Optional]
     [JsonPropertyName("access_level")]
     public OrganizationAccessLevelEnum? AccessLevel { get; set; }
+
+    /// <summary>
+    /// The Organization Member Access Level for this connection.
+    /// </summary>
+    [Optional]
+    [JsonPropertyName("member_access_level")]
+    public OrganizationMemberAccessLevelEnum? MemberAccessLevel { get; set; }
+
+    /// <summary>
+    /// True if third-party applications can use it. If false, only first-party applications with the connection enabled can use it. Defaults to false.
+    /// </summary>
+    [Optional]
+    [JsonPropertyName("use_for_third_party_client_access")]
+    public bool? UseForThirdPartyClientAccess { get; set; }
+
+    /// <summary>
+    /// Cross-app access resource application configuration. Only present when the cross-app access resource application feature is enabled for your organization.
+    /// </summary>
+    [Optional]
+    [JsonPropertyName("cross_app_access_resource_app")]
+    public CrossAppAccessResourceApp? CrossAppAccessResourceApp { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
