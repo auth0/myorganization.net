@@ -136,7 +136,7 @@ public class ListTest : BaseMockServerTest
             {
                 MemberAccessLevel =
                 [
-                    new List<OrganizationAccessLevelEnum?>() { OrganizationAccessLevelEnum.None },
+                  ..new List<OrganizationAccessLevelEnum?>() { OrganizationAccessLevelEnum.None },
                 ],
                 IsEnabled = true,
             }
