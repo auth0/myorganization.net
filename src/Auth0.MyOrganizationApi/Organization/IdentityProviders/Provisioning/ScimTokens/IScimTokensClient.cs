@@ -26,7 +26,7 @@ public partial interface IScimTokensClient
     /// <summary>
     /// Revoke a SCIM token specified by token ID for the Provisioning Configuration of an Identity Provider specified by ID for this Organization.
     /// </summary>
-    Task DeleteAsync(
+    WithRawResponseTask DeleteAsync(
         string idpId,
         string idpScimTokenId,
         RequestOptions? options = null,

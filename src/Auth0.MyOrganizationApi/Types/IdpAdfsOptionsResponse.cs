@@ -30,14 +30,14 @@ public class IdpAdfsOptionsResponse
     public object? Value { get; internal set; }
 
     /// <summary>
-    /// Factory method to create a union from a Auth0.MyOrganizationApi.IdpAdfsOptionsResponseAdfsServer value.
+    /// Factory method to create a union from a <see cref="Auth0.MyOrganizationApi.IdpAdfsOptionsResponseAdfsServer"/> value.
     /// </summary>
     public static IdpAdfsOptionsResponse FromIdpAdfsOptionsResponseAdfsServer(
         Auth0.MyOrganizationApi.IdpAdfsOptionsResponseAdfsServer value
     ) => new("idpAdfsOptionsResponseAdfsServer", value);
 
     /// <summary>
-    /// Factory method to create a union from a Auth0.MyOrganizationApi.IdpAdfsOptionsResponseFedMetadataXml value.
+    /// Factory method to create a union from a <see cref="Auth0.MyOrganizationApi.IdpAdfsOptionsResponseFedMetadataXml"/> value.
     /// </summary>
     public static IdpAdfsOptionsResponse FromIdpAdfsOptionsResponseFedMetadataXml(
         Auth0.MyOrganizationApi.IdpAdfsOptionsResponseFedMetadataXml value
