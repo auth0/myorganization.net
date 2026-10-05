@@ -134,10 +134,10 @@ public class ListTest : BaseMockServerTest
         var response = await Client.Organization.IdentityProviders.ListAsync(
             new ListOrganizationIdentityProvidersRequestParameters
             {
-                MemberAccessLevel =
-                [
-                  ..new List<OrganizationAccessLevelEnum?>() { OrganizationAccessLevelEnum.None },
-                ],
+                MemberAccessLevel = new List<OrganizationAccessLevelEnum?>()
+                {
+                    OrganizationAccessLevelEnum.None,
+                },
                 IsEnabled = true,
             }
         );

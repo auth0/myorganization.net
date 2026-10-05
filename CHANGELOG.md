@@ -1,5 +1,30 @@
 # Change Log
 
+## [2.0.0](https://github.com/auth0/myorganization.net/tree/2.0.0) (2026-09-18)
+[Full Changelog](https://github.com/auth0/myorganization.net/compare/1.0.0...2.0.0)
+
+This release adds Organization deletion, a user stores API, per-invitation role listing, and richer identity-provider configuration and filtering. It also carries several breaking changes to the invitation, identity-provider, and member surfaces — review the **Breaking Changes** below before upgrading.
+
+**Breaking Changes**
+- **Revoking member invitations is now a bulk operation.** `client.Organization.Invitations.DeleteAsync(...)` no longer accepts a single invitation ID. It now takes a request that lists one or more invitation IDs to revoke and removes them in a single call. To revoke a single invitation, pass its ID in the invitations list. [\#74](https://github.com/auth0/myorganization.net/pull/74) ([fern-api[bot]](https://github.com/apps/fern-api))
+- **Listing identity providers now requires a request argument.** `client.Organization.IdentityProviders.ListAsync()` now takes a parameters object so the results can be filtered (see Added — IdP filtering). Existing no-argument calls will not compile; pass an empty parameters object to preserve the previous "list all" behaviour. [\#74](https://github.com/auth0/myorganization.net/pull/74) ([fern-api[bot]](https://github.com/apps/fern-api))
+- **Domain identity-provider listing renamed.** `client.Organization.Domains.IdentityProviders.GetAsync(domainId)` is renamed to `ListAsync(domainId)` to reflect that it returns a collection of identity providers for the domain. [\#74](https://github.com/auth0/myorganization.net/pull/74) ([fern-api[bot]](https://github.com/apps/fern-api))
+- **Retrieving a single member returns a different type.** `client.Organization.Members.GetAsync(...)` now returns `OrgMemberBase` (the single-member shape) instead of `OrgMember`. Callers that store the result in an explicitly typed variable must update the type. [\#74](https://github.com/auth0/myorganization.net/pull/74) ([fern-api[bot]](https://github.com/apps/fern-api))
+
+**Added**
+- **Organization deletion** — permanently delete the current Organization via `client.OrganizationDetails.DeleteAsync()`, gated by the new `delete:my_org:organizations` scope. [\#74](https://github.com/auth0/myorganization.net/pull/74) ([fern-api[bot]](https://github.com/apps/fern-api))
+- **User Stores API** — `client.Organization.UserStores.ListAsync(...)` lists the user stores backing the Organization, filterable by member access level and enabled state. Requires the new `read:my_org:user_stores` scope. [\#74](https://github.com/auth0/myorganization.net/pull/74) ([fern-api[bot]](https://github.com/apps/fern-api))
+- **Per-invitation roles** — `client.Organization.Invitations.Roles.ListAsync(invitationId)` retrieves the roles that will be granted when a pending invitation is accepted. [\#74](https://github.com/auth0/myorganization.net/pull/74) ([fern-api[bot]](https://github.com/apps/fern-api))
+- **User-store-routed invitations** — invitations can now be routed through a user store as an alternative to an identity provider; at least one of the two must be supplied when creating an invitation, and a created invitation reports the user store it was routed through. [\#74](https://github.com/auth0/myorganization.net/pull/74) ([fern-api[bot]](https://github.com/apps/fern-api))
+- **Identity provider and user store filtering** — the identity-provider and user-store list endpoints accept filters for member access level and whether the entry is enabled, so callers can narrow results server-side instead of filtering client-side. [\#74](https://github.com/auth0/myorganization.net/pull/74) ([fern-api[bot]](https://github.com/apps/fern-api))
+- **Total counts on list responses** — Members and Invitations list requests accept an `IncludeTotals` option, and the corresponding responses can now surface a total count alongside the page of results. [\#74](https://github.com/auth0/myorganization.net/pull/74) ([fern-api[bot]](https://github.com/apps/fern-api))
+- **Member effective access level** — a member's effective access level for the Organization is now exposed on the member model and returned when reading a member. [\#74](https://github.com/auth0/myorganization.net/pull/74) ([fern-api[bot]](https://github.com/apps/fern-api))
+- **Expanded identity-provider configuration** — richer, strongly-typed configuration across OIDC, Okta, and SAML providers, including federation metadata (URL and inline XML), sign-in endpoints, provisioning configuration (SCIM tokens and on-login provisioning), and cross-app / third-party client access settings. [\#74](https://github.com/auth0/myorganization.net/pull/74) ([fern-api[bot]](https://github.com/apps/fern-api))
+
+**Security**
+- chore: Bump NUnit3TestAdapter from 6.2.0 to 6.3.0 [\#70](https://github.com/auth0/myorganization.net/pull/70) ([dependabot[bot]](https://github.com/apps/dependabot))
+- chore: Bump Auth0.AuthenticationApi from 7.48.0 to 7.49.0 [\#67](https://github.com/auth0/myorganization.net/pull/67) ([dependabot[bot]](https://github.com/apps/dependabot))
+
 ## [1.0.0](https://github.com/auth0/myorganization.net/tree/1.0.0) (2026-06-17)
 
 First stable release. Builds on `1.0.0-beta.0` with new Organization member-management APIs and the move to the versioned `/v1` API path.
