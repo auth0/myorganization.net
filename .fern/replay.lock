@@ -12,5 +12,356 @@ generations:
     cli_version: unknown
     generator_versions:
       fernapi/fern-csharp-sdk: 2.58.0
-current_generation: 5dbffc2fc677dbd3ae13a3be0d8caef2ddb4e8ed
-patches: []
+  - commit_sha: 35ae6320734cef3d8de7c1f163d826e07ae6f4ac
+    tree_hash: 1e462076c3933b59316e1b2bf11f71762abe8040
+    timestamp: 2026-10-05T13:11:21.296Z
+    cli_version: unknown
+    generator_versions:
+      fernapi/fern-csharp-sdk: 2.86.1
+current_generation: 35ae6320734cef3d8de7c1f163d826e07ae6f4ac
+patches:
+  - id: patch-ec6993fd
+    content_hash: sha256:e3d3c36c0252ca3f5b98826369d02c3ac6914f5cf147c6b9864e660266e42316
+    original_commit: ec6993fd376877b53d34b1f9eae7b0c4a093eae8
+    original_message: "chore: Bump Microsoft.NET.Test.Sdk from 18.8.1 to 18.10.1 (#76)"
+    original_author: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>
+    base_generation: 69c1a02728f3da0ef99874de2b33c10b67df36fa
+    files:
+      - src/Auth0.MyOrganizationApi.Test/Auth0.MyOrganizationApi.Test.csproj
+    patch_content: |+
+      From ec6993fd376877b53d34b1f9eae7b0c4a093eae8 Mon Sep 17 00:00:00 2001
+      From: "dependabot[bot]" <49699333+dependabot[bot]@users.noreply.github.com>
+      Date: Mon, 5 Oct 2026 11:42:49 +0530
+      Subject: [PATCH] chore: Bump Microsoft.NET.Test.Sdk from 18.8.1 to 18.10.1
+       (#76)
+
+      ---
+      updated-dependencies:
+      - dependency-name: Microsoft.NET.Test.Sdk
+        dependency-version: 18.10.1
+        dependency-type: direct:production
+        update-type: version-update:semver-minor
+      ...
+
+      Signed-off-by: dependabot[bot] <support@github.com>
+      Co-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>
+      ---
+       .../Auth0.MyOrganizationApi.Test.csproj                         | 2 +-
+       1 file changed, 1 insertion(+), 1 deletion(-)
+
+      diff --git a/src/Auth0.MyOrganizationApi.Test/Auth0.MyOrganizationApi.Test.csproj b/src/Auth0.MyOrganizationApi.Test/Auth0.MyOrganizationApi.Test.csproj
+      index 219a4cb..aa393a3 100644
+      --- a/src/Auth0.MyOrganizationApi.Test/Auth0.MyOrganizationApi.Test.csproj
+      +++ b/src/Auth0.MyOrganizationApi.Test/Auth0.MyOrganizationApi.Test.csproj
+      @@ -14,7 +14,7 @@
+             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+             <PrivateAssets>all</PrivateAssets>
+           </PackageReference>
+      -    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="18.8.1" />
+      +    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="18.10.1" />
+           <PackageReference Include="NUnit" Version="4.6.1" />
+           <PackageReference Include="NUnit3TestAdapter" Version="6.3.0" />
+           <PackageReference Include="NUnit.Analyzers" Version="4.14.0">
+      -- 
+      2.52.0
+
+    theirs_snapshot:
+      src/Auth0.MyOrganizationApi.Test/Auth0.MyOrganizationApi.Test.csproj: |-
+        <Project Sdk="Microsoft.NET.Sdk">
+          <PropertyGroup>
+            <TargetFramework>net9.0</TargetFramework>
+            <LangVersion>12</LangVersion>
+            <ImplicitUsings>enable</ImplicitUsings>
+            <Nullable>enable</Nullable>
+            <IsPackable>false</IsPackable>
+            <IsTestProject>true</IsTestProject>
+            <PolySharpIncludeRuntimeSupportedAttributes>true</PolySharpIncludeRuntimeSupportedAttributes>
+          </PropertyGroup>
+
+          <ItemGroup>
+            <PackageReference Include="PolySharp" Version="1.16.0">
+              <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+              <PrivateAssets>all</PrivateAssets>
+            </PackageReference>
+            <PackageReference Include="Microsoft.NET.Test.Sdk" Version="18.10.1" />
+            <PackageReference Include="NUnit" Version="4.6.1" />
+            <PackageReference Include="NUnit3TestAdapter" Version="6.3.0" />
+            <PackageReference Include="NUnit.Analyzers" Version="4.14.0">
+              <PrivateAssets>all</PrivateAssets>
+              <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+            </PackageReference>
+            <PackageReference Include="coverlet.collector" Version="10.0.1">
+              <PrivateAssets>all</PrivateAssets>
+              <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+            </PackageReference>
+            <PackageReference Include="WireMock.Net" Version="2.13.0" />
+          </ItemGroup>
+
+          <ItemGroup>
+            <ProjectReference Include="..\Auth0.MyOrganizationApi\Auth0.MyOrganizationApi.csproj" />
+          </ItemGroup>
+
+          <Import
+            Project="Auth0.MyOrganizationApi.Test.Custom.props"
+            Condition="Exists('Auth0.MyOrganizationApi.Test.Custom.props')"
+          />
+        </Project>
+    status: unresolved
+  - id: patch-13c049a2
+    content_hash: sha256:4844df0c21a8a580c87ff4eb55f131a728e010ee0a088cd32d71f38f16333fd3
+    original_commit: 13c049a2ebada7efa71bcaa386177db8b071a8fd
+    original_message: "chore: Bump NUnit.Analyzers from 4.14.0 to 4.15.0 (#77)"
+    original_author: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>
+    base_generation: 69c1a02728f3da0ef99874de2b33c10b67df36fa
+    files:
+      - src/Auth0.MyOrganizationApi.Test/Auth0.MyOrganizationApi.Test.csproj
+    patch_content: |+
+      From 13c049a2ebada7efa71bcaa386177db8b071a8fd Mon Sep 17 00:00:00 2001
+      From: "dependabot[bot]" <49699333+dependabot[bot]@users.noreply.github.com>
+      Date: Mon, 5 Oct 2026 11:43:13 +0530
+      Subject: [PATCH] chore: Bump NUnit.Analyzers from 4.14.0 to 4.15.0 (#77)
+
+      ---
+      updated-dependencies:
+      - dependency-name: NUnit.Analyzers
+        dependency-version: 4.15.0
+        dependency-type: direct:production
+        update-type: version-update:semver-minor
+      ...
+
+      Signed-off-by: dependabot[bot] <support@github.com>
+      Co-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>
+      ---
+       .../Auth0.MyOrganizationApi.Test.csproj                         | 2 +-
+       1 file changed, 1 insertion(+), 1 deletion(-)
+
+      diff --git a/src/Auth0.MyOrganizationApi.Test/Auth0.MyOrganizationApi.Test.csproj b/src/Auth0.MyOrganizationApi.Test/Auth0.MyOrganizationApi.Test.csproj
+      index aa393a3..305f2c6 100644
+      --- a/src/Auth0.MyOrganizationApi.Test/Auth0.MyOrganizationApi.Test.csproj
+      +++ b/src/Auth0.MyOrganizationApi.Test/Auth0.MyOrganizationApi.Test.csproj
+      @@ -17,7 +17,7 @@
+           <PackageReference Include="Microsoft.NET.Test.Sdk" Version="18.10.1" />
+           <PackageReference Include="NUnit" Version="4.6.1" />
+           <PackageReference Include="NUnit3TestAdapter" Version="6.3.0" />
+      -    <PackageReference Include="NUnit.Analyzers" Version="4.14.0">
+      +    <PackageReference Include="NUnit.Analyzers" Version="4.15.0">
+             <PrivateAssets>all</PrivateAssets>
+             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+           </PackageReference>
+      -- 
+      2.52.0
+
+    theirs_snapshot:
+      src/Auth0.MyOrganizationApi.Test/Auth0.MyOrganizationApi.Test.csproj: |-
+        <Project Sdk="Microsoft.NET.Sdk">
+          <PropertyGroup>
+            <TargetFramework>net9.0</TargetFramework>
+            <LangVersion>12</LangVersion>
+            <ImplicitUsings>enable</ImplicitUsings>
+            <Nullable>enable</Nullable>
+            <IsPackable>false</IsPackable>
+            <IsTestProject>true</IsTestProject>
+            <PolySharpIncludeRuntimeSupportedAttributes>true</PolySharpIncludeRuntimeSupportedAttributes>
+          </PropertyGroup>
+
+          <ItemGroup>
+            <PackageReference Include="PolySharp" Version="1.16.0">
+              <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+              <PrivateAssets>all</PrivateAssets>
+            </PackageReference>
+            <PackageReference Include="Microsoft.NET.Test.Sdk" Version="18.10.1" />
+            <PackageReference Include="NUnit" Version="4.6.1" />
+            <PackageReference Include="NUnit3TestAdapter" Version="6.3.0" />
+            <PackageReference Include="NUnit.Analyzers" Version="4.15.0">
+              <PrivateAssets>all</PrivateAssets>
+              <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+            </PackageReference>
+            <PackageReference Include="coverlet.collector" Version="10.0.1">
+              <PrivateAssets>all</PrivateAssets>
+              <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+            </PackageReference>
+            <PackageReference Include="WireMock.Net" Version="2.13.0" />
+          </ItemGroup>
+
+          <ItemGroup>
+            <ProjectReference Include="..\Auth0.MyOrganizationApi\Auth0.MyOrganizationApi.csproj" />
+          </ItemGroup>
+
+          <Import
+            Project="Auth0.MyOrganizationApi.Test.Custom.props"
+            Condition="Exists('Auth0.MyOrganizationApi.Test.Custom.props')"
+          />
+        </Project>
+    status: unresolved
+  - id: patch-a6b7e45f
+    content_hash: sha256:4b28085b319ebd69596c350a6c5ca5c350d3b345bddc649d5da2aced02bb6017
+    original_commit: a6b7e45fe9cda16d52d71e13702ee605bbac3b97
+    original_message: "chore: Bump WireMock.Net from 2.13.0 to 2.18.0 (#80)"
+    original_author: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>
+    base_generation: 69c1a02728f3da0ef99874de2b33c10b67df36fa
+    files:
+      - src/Auth0.MyOrganizationApi.Test/Auth0.MyOrganizationApi.Test.csproj
+    patch_content: |+
+      From a6b7e45fe9cda16d52d71e13702ee605bbac3b97 Mon Sep 17 00:00:00 2001
+      From: "dependabot[bot]" <49699333+dependabot[bot]@users.noreply.github.com>
+      Date: Mon, 5 Oct 2026 11:44:09 +0530
+      Subject: [PATCH] chore: Bump WireMock.Net from 2.13.0 to 2.18.0 (#80)
+
+      ---
+      updated-dependencies:
+      - dependency-name: WireMock.Net
+        dependency-version: 2.18.0
+        dependency-type: direct:production
+        update-type: version-update:semver-minor
+      ...
+
+      Signed-off-by: dependabot[bot] <support@github.com>
+      Co-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>
+      ---
+       .../Auth0.MyOrganizationApi.Test.csproj                         | 2 +-
+       1 file changed, 1 insertion(+), 1 deletion(-)
+
+      diff --git a/src/Auth0.MyOrganizationApi.Test/Auth0.MyOrganizationApi.Test.csproj b/src/Auth0.MyOrganizationApi.Test/Auth0.MyOrganizationApi.Test.csproj
+      index 305f2c6..94fb5bb 100644
+      --- a/src/Auth0.MyOrganizationApi.Test/Auth0.MyOrganizationApi.Test.csproj
+      +++ b/src/Auth0.MyOrganizationApi.Test/Auth0.MyOrganizationApi.Test.csproj
+      @@ -25,7 +25,7 @@
+             <PrivateAssets>all</PrivateAssets>
+             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+           </PackageReference>
+      -    <PackageReference Include="WireMock.Net" Version="2.13.0" />
+      +    <PackageReference Include="WireMock.Net" Version="2.18.0" />
+         </ItemGroup>
+       
+         <ItemGroup>
+      -- 
+      2.52.0
+
+    theirs_snapshot:
+      src/Auth0.MyOrganizationApi.Test/Auth0.MyOrganizationApi.Test.csproj: |-
+        <Project Sdk="Microsoft.NET.Sdk">
+          <PropertyGroup>
+            <TargetFramework>net9.0</TargetFramework>
+            <LangVersion>12</LangVersion>
+            <ImplicitUsings>enable</ImplicitUsings>
+            <Nullable>enable</Nullable>
+            <IsPackable>false</IsPackable>
+            <IsTestProject>true</IsTestProject>
+            <PolySharpIncludeRuntimeSupportedAttributes>true</PolySharpIncludeRuntimeSupportedAttributes>
+          </PropertyGroup>
+
+          <ItemGroup>
+            <PackageReference Include="PolySharp" Version="1.16.0">
+              <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+              <PrivateAssets>all</PrivateAssets>
+            </PackageReference>
+            <PackageReference Include="Microsoft.NET.Test.Sdk" Version="18.10.1" />
+            <PackageReference Include="NUnit" Version="4.6.1" />
+            <PackageReference Include="NUnit3TestAdapter" Version="6.3.0" />
+            <PackageReference Include="NUnit.Analyzers" Version="4.15.0">
+              <PrivateAssets>all</PrivateAssets>
+              <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+            </PackageReference>
+            <PackageReference Include="coverlet.collector" Version="10.0.1">
+              <PrivateAssets>all</PrivateAssets>
+              <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+            </PackageReference>
+            <PackageReference Include="WireMock.Net" Version="2.18.0" />
+          </ItemGroup>
+
+          <ItemGroup>
+            <ProjectReference Include="..\Auth0.MyOrganizationApi\Auth0.MyOrganizationApi.csproj" />
+          </ItemGroup>
+
+          <Import
+            Project="Auth0.MyOrganizationApi.Test.Custom.props"
+            Condition="Exists('Auth0.MyOrganizationApi.Test.Custom.props')"
+          />
+        </Project>
+    status: unresolved
+  - id: patch-e3e21dbf
+    content_hash: sha256:3151b157542111fa11877dcb8a7a1a92c6362339e6dd0f5d46e0e4ae04170e05
+    original_commit: e3e21dbf9ab549c3bba246d0eea3259a4a2c0654
+    original_message: "chore: Bump coverlet.collector from 10.0.1 to 10.1.0 (#81)"
+    original_author: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>
+    base_generation: 69c1a02728f3da0ef99874de2b33c10b67df36fa
+    files:
+      - src/Auth0.MyOrganizationApi.Test/Auth0.MyOrganizationApi.Test.csproj
+    patch_content: |+
+      From e3e21dbf9ab549c3bba246d0eea3259a4a2c0654 Mon Sep 17 00:00:00 2001
+      From: "dependabot[bot]" <49699333+dependabot[bot]@users.noreply.github.com>
+      Date: Mon, 5 Oct 2026 11:44:37 +0530
+      Subject: [PATCH] chore: Bump coverlet.collector from 10.0.1 to 10.1.0 (#81)
+
+      ---
+      updated-dependencies:
+      - dependency-name: coverlet.collector
+        dependency-version: 10.1.0
+        dependency-type: direct:production
+        update-type: version-update:semver-minor
+      ...
+
+      Signed-off-by: dependabot[bot] <support@github.com>
+      Co-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>
+      ---
+       .../Auth0.MyOrganizationApi.Test.csproj                         | 2 +-
+       1 file changed, 1 insertion(+), 1 deletion(-)
+
+      diff --git a/src/Auth0.MyOrganizationApi.Test/Auth0.MyOrganizationApi.Test.csproj b/src/Auth0.MyOrganizationApi.Test/Auth0.MyOrganizationApi.Test.csproj
+      index 94fb5bb..3503c9a 100644
+      --- a/src/Auth0.MyOrganizationApi.Test/Auth0.MyOrganizationApi.Test.csproj
+      +++ b/src/Auth0.MyOrganizationApi.Test/Auth0.MyOrganizationApi.Test.csproj
+      @@ -21,7 +21,7 @@
+             <PrivateAssets>all</PrivateAssets>
+             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+           </PackageReference>
+      -    <PackageReference Include="coverlet.collector" Version="10.0.1">
+      +    <PackageReference Include="coverlet.collector" Version="10.1.0">
+             <PrivateAssets>all</PrivateAssets>
+             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+           </PackageReference>
+      -- 
+      2.52.0
+
+    theirs_snapshot:
+      src/Auth0.MyOrganizationApi.Test/Auth0.MyOrganizationApi.Test.csproj: |-
+        <Project Sdk="Microsoft.NET.Sdk">
+          <PropertyGroup>
+            <TargetFramework>net9.0</TargetFramework>
+            <LangVersion>12</LangVersion>
+            <ImplicitUsings>enable</ImplicitUsings>
+            <Nullable>enable</Nullable>
+            <IsPackable>false</IsPackable>
+            <IsTestProject>true</IsTestProject>
+            <PolySharpIncludeRuntimeSupportedAttributes>true</PolySharpIncludeRuntimeSupportedAttributes>
+          </PropertyGroup>
+
+          <ItemGroup>
+            <PackageReference Include="PolySharp" Version="1.16.0">
+              <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+              <PrivateAssets>all</PrivateAssets>
+            </PackageReference>
+            <PackageReference Include="Microsoft.NET.Test.Sdk" Version="18.10.1" />
+            <PackageReference Include="NUnit" Version="4.6.1" />
+            <PackageReference Include="NUnit3TestAdapter" Version="6.3.0" />
+            <PackageReference Include="NUnit.Analyzers" Version="4.15.0">
+              <PrivateAssets>all</PrivateAssets>
+              <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+            </PackageReference>
+            <PackageReference Include="coverlet.collector" Version="10.1.0">
+              <PrivateAssets>all</PrivateAssets>
+              <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+            </PackageReference>
+            <PackageReference Include="WireMock.Net" Version="2.18.0" />
+          </ItemGroup>
+
+          <ItemGroup>
+            <ProjectReference Include="..\Auth0.MyOrganizationApi\Auth0.MyOrganizationApi.csproj" />
+          </ItemGroup>
+
+          <Import
+            Project="Auth0.MyOrganizationApi.Test.Custom.props"
+            Condition="Exists('Auth0.MyOrganizationApi.Test.Custom.props')"
+          />
+        </Project>
+    status: unresolved

@@ -19,6 +19,9 @@ public partial class VerifyClient : IVerifyClient
         CancellationToken cancellationToken = default
     )
     {
+        var _queryString = new Auth0.MyOrganizationApi.Core.QueryStringBuilder.Builder(capacity: 0)
+            .MergeAdditional(options?.AdditionalQueryParameters)
+            .Build();
         var _headers = await new Auth0.MyOrganizationApi.Core.HeadersBuilder.Builder()
             .Add(_client.Options.Headers)
             .Add(_client.Options.AdditionalHeaders)
@@ -34,6 +37,7 @@ public partial class VerifyClient : IVerifyClient
                         "domains/{0}/verify",
                         ValueConvert.ToPathParameterString(domainId)
                     ),
+                    QueryString = _queryString,
                     Headers = _headers,
                     Options = options,
                 },
@@ -51,7 +55,7 @@ public partial class VerifyClient : IVerifyClient
                 return new WithRawResponse<OrgDomain>()
                 {
                     Data = responseData,
-                    RawResponse = new RawResponse()
+                    RawResponse = new Auth0.MyOrganizationApi.RawResponse()
                     {
                         StatusCode = response.Raw.StatusCode,
                         Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
@@ -65,7 +69,13 @@ public partial class VerifyClient : IVerifyClient
                     "Failed to deserialize response",
                     response.StatusCode,
                     null,
-                    e
+                    e,
+                    rawResponse: new Auth0.MyOrganizationApi.RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    }
                 );
             }
         }
@@ -78,22 +88,64 @@ public partial class VerifyClient : IVerifyClient
                 switch (response.StatusCode)
                 {
                     case 400:
-                        throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
+                        throw new BadRequestError(
+                            JsonUtils.Deserialize<object>(responseBody),
+                            rawResponse: new Auth0.MyOrganizationApi.RawResponse()
+                            {
+                                StatusCode = response.Raw.StatusCode,
+                                Url =
+                                    response.Raw.RequestMessage?.RequestUri
+                                    ?? new Uri("about:blank"),
+                                Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                            }
+                        );
                     case 401:
                         throw new UnauthorizedError(
-                            JsonUtils.Deserialize<ErrorResponseContent>(responseBody)
+                            JsonUtils.Deserialize<ErrorResponseContent>(responseBody),
+                            rawResponse: new Auth0.MyOrganizationApi.RawResponse()
+                            {
+                                StatusCode = response.Raw.StatusCode,
+                                Url =
+                                    response.Raw.RequestMessage?.RequestUri
+                                    ?? new Uri("about:blank"),
+                                Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                            }
                         );
                     case 403:
                         throw new ForbiddenError(
-                            JsonUtils.Deserialize<ErrorResponseContent>(responseBody)
+                            JsonUtils.Deserialize<ErrorResponseContent>(responseBody),
+                            rawResponse: new Auth0.MyOrganizationApi.RawResponse()
+                            {
+                                StatusCode = response.Raw.StatusCode,
+                                Url =
+                                    response.Raw.RequestMessage?.RequestUri
+                                    ?? new Uri("about:blank"),
+                                Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                            }
                         );
                     case 404:
                         throw new NotFoundError(
-                            JsonUtils.Deserialize<ErrorResponseContent>(responseBody)
+                            JsonUtils.Deserialize<ErrorResponseContent>(responseBody),
+                            rawResponse: new Auth0.MyOrganizationApi.RawResponse()
+                            {
+                                StatusCode = response.Raw.StatusCode,
+                                Url =
+                                    response.Raw.RequestMessage?.RequestUri
+                                    ?? new Uri("about:blank"),
+                                Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                            }
                         );
                     case 429:
                         throw new TooManyRequestsError(
-                            JsonUtils.Deserialize<ErrorResponseContent>(responseBody)
+                            JsonUtils.Deserialize<ErrorResponseContent>(responseBody),
+                            rawResponse: new Auth0.MyOrganizationApi.RawResponse()
+                            {
+                                StatusCode = response.Raw.StatusCode,
+                                Url =
+                                    response.Raw.RequestMessage?.RequestUri
+                                    ?? new Uri("about:blank"),
+                                Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                            }
                         );
                 }
             }
@@ -104,7 +156,13 @@ public partial class VerifyClient : IVerifyClient
             throw new MyOrganizationApiException(
                 $"Error with status code {response.StatusCode}",
                 response.StatusCode,
-                responseBody
+                responseBody,
+                rawResponse: new Auth0.MyOrganizationApi.RawResponse()
+                {
+                    StatusCode = response.Raw.StatusCode,
+                    Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                    Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                }
             );
         }
     }

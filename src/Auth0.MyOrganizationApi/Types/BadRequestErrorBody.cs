@@ -30,14 +30,14 @@ public class BadRequestErrorBody
     public object? Value { get; internal set; }
 
     /// <summary>
-    /// Factory method to create a union from a Auth0.MyOrganizationApi.ErrorResponseContent value.
+    /// Factory method to create a union from a <see cref="Auth0.MyOrganizationApi.ErrorResponseContent"/> value.
     /// </summary>
     public static BadRequestErrorBody FromErrorResponseContent(
         Auth0.MyOrganizationApi.ErrorResponseContent value
     ) => new("errorResponseContent", value);
 
     /// <summary>
-    /// Factory method to create a union from a Auth0.MyOrganizationApi.ValidationErrorResponseContent value.
+    /// Factory method to create a union from a <see cref="Auth0.MyOrganizationApi.ValidationErrorResponseContent"/> value.
     /// </summary>
     public static BadRequestErrorBody FromValidationErrorResponseContent(
         Auth0.MyOrganizationApi.ValidationErrorResponseContent value

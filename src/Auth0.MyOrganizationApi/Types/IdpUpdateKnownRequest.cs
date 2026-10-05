@@ -30,49 +30,49 @@ public class IdpUpdateKnownRequest
     public object? Value { get; internal set; }
 
     /// <summary>
-    /// Factory method to create a union from a Auth0.MyOrganizationApi.IdpAdfsUpdateRequest value.
+    /// Factory method to create a union from a <see cref="Auth0.MyOrganizationApi.IdpAdfsUpdateRequest"/> value.
     /// </summary>
     public static IdpUpdateKnownRequest FromIdpAdfsUpdateRequest(
         Auth0.MyOrganizationApi.IdpAdfsUpdateRequest value
     ) => new("idpAdfsUpdateRequest", value);
 
     /// <summary>
-    /// Factory method to create a union from a Auth0.MyOrganizationApi.IdpGoogleAppsUpdateRequest value.
+    /// Factory method to create a union from a <see cref="Auth0.MyOrganizationApi.IdpGoogleAppsUpdateRequest"/> value.
     /// </summary>
     public static IdpUpdateKnownRequest FromIdpGoogleAppsUpdateRequest(
         Auth0.MyOrganizationApi.IdpGoogleAppsUpdateRequest value
     ) => new("idpGoogleAppsUpdateRequest", value);
 
     /// <summary>
-    /// Factory method to create a union from a Auth0.MyOrganizationApi.IdpOidcUpdateRequest value.
+    /// Factory method to create a union from a <see cref="Auth0.MyOrganizationApi.IdpOidcUpdateRequest"/> value.
     /// </summary>
     public static IdpUpdateKnownRequest FromIdpOidcUpdateRequest(
         Auth0.MyOrganizationApi.IdpOidcUpdateRequest value
     ) => new("idpOidcUpdateRequest", value);
 
     /// <summary>
-    /// Factory method to create a union from a Auth0.MyOrganizationApi.IdpOktaUpdateRequest value.
+    /// Factory method to create a union from a <see cref="Auth0.MyOrganizationApi.IdpOktaUpdateRequest"/> value.
     /// </summary>
     public static IdpUpdateKnownRequest FromIdpOktaUpdateRequest(
         Auth0.MyOrganizationApi.IdpOktaUpdateRequest value
     ) => new("idpOktaUpdateRequest", value);
 
     /// <summary>
-    /// Factory method to create a union from a Auth0.MyOrganizationApi.IdpPingFederateUpdateRequest value.
+    /// Factory method to create a union from a <see cref="Auth0.MyOrganizationApi.IdpPingFederateUpdateRequest"/> value.
     /// </summary>
     public static IdpUpdateKnownRequest FromIdpPingFederateUpdateRequest(
         Auth0.MyOrganizationApi.IdpPingFederateUpdateRequest value
     ) => new("idpPingFederateUpdateRequest", value);
 
     /// <summary>
-    /// Factory method to create a union from a Auth0.MyOrganizationApi.IdpSamlpUpdateRequest value.
+    /// Factory method to create a union from a <see cref="Auth0.MyOrganizationApi.IdpSamlpUpdateRequest"/> value.
     /// </summary>
     public static IdpUpdateKnownRequest FromIdpSamlpUpdateRequest(
         Auth0.MyOrganizationApi.IdpSamlpUpdateRequest value
     ) => new("idpSamlpUpdateRequest", value);
 
     /// <summary>
-    /// Factory method to create a union from a Auth0.MyOrganizationApi.IdpWaadUpdateRequest value.
+    /// Factory method to create a union from a <see cref="Auth0.MyOrganizationApi.IdpWaadUpdateRequest"/> value.
     /// </summary>
     public static IdpUpdateKnownRequest FromIdpWaadUpdateRequest(
         Auth0.MyOrganizationApi.IdpWaadUpdateRequest value

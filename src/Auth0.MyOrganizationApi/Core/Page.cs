@@ -1,5 +1,6 @@
 using global::System.Collections;
 using global::System.Collections.ObjectModel;
+using global::System.Net;
 
 namespace Auth0.MyOrganizationApi.Core;
 
@@ -20,9 +21,48 @@ public class Page<TItem> : IEnumerable<TItem>
     }
 
     /// <summary>
+    /// Creates a new <see cref="Page{TItem}"/> with the specified items and response metadata.
+    /// </summary>
+    public Page(
+        IReadOnlyList<TItem> items,
+        object? response,
+        HttpStatusCode statusCode,
+        ResponseHeaders? headers,
+        Uri? url = null
+    )
+    {
+        Items = items;
+        Response = response;
+        StatusCode = statusCode;
+        Headers = headers;
+        Url = url;
+    }
+
+    /// <summary>
     /// Gets the items in this <see cref="Page{TItem}"/>.
     /// </summary>
     public IReadOnlyList<TItem> Items { get; }
+
+    /// <summary>
+    /// The full API response object for this page. Cast to the endpoint's response
+    /// type to access fields beyond the paginated items (e.g., TotalCount, metadata).
+    /// </summary>
+    public object? Response { get; }
+
+    /// <summary>
+    /// The HTTP status code of the response that produced this page.
+    /// </summary>
+    public HttpStatusCode StatusCode { get; }
+
+    /// <summary>
+    /// The HTTP response headers from the response that produced this page.
+    /// </summary>
+    public ResponseHeaders? Headers { get; }
+
+    /// <summary>
+    /// The request URL that produced this page.
+    /// </summary>
+    public Uri? Url { get; }
 
     /// <summary>
     /// Enumerate the items in this <see cref="Page{TItem}"/>.
