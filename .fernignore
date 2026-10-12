@@ -11,7 +11,10 @@ src/Auth0.MyOrganizationApi/Wrapper
 src/Auth0.MyOrganizationApi.Test/Unit/Wrapper
 src/Auth0.MyOrganizationApi.Test/Auth0.MyOrganizationApi.Test.Custom.props
 
-src/Auth0.MyOrganizationApi/Core/RawClient.cs
+# Auth0-Client telemetry header
+src/Auth0.MyOrganizationApi/Core/Public/ClientOptions.Custom.cs
+src/Auth0.MyOrganizationApi.Test/Core/TelemetryTests.cs
+
 src/Auth0.MyOrganizationApi/MyOrganizationApiClient.Internal.cs
 
 # GitHub configuration

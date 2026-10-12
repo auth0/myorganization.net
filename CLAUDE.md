@@ -68,7 +68,8 @@ Apply these on every task in this repo — they keep changes correct, small, and
 | `src/Auth0.MyOrganizationApi/Wrapper/MyOrganizationClient.cs` | Recommended entry point — wraps the generated client with token management; **hand-written**, fernignored |
 | `src/Auth0.MyOrganizationApi/Wrapper/ClientCredentialsTokenProvider.cs` | M2M / private-key-JWT token acquisition, caching, refresh |
 | `src/Auth0.MyOrganizationApi/MyOrganizationApiClient.cs` | Generated low-level client (static-token usage) |
-| `src/Auth0.MyOrganizationApi/Core/RawClient.cs` | HTTP transport, retries, and the `Auth0-Client` telemetry header (fernignored) |
+| `src/Auth0.MyOrganizationApi/Core/RawClient.cs` | HTTP transport and retries — **generated**, no hand edits |
+| `src/Auth0.MyOrganizationApi/Core/Public/ClientOptions.Custom.cs` | `partial ClientOptions` whose constructor seeds the `Auth0-Client` telemetry header; **hand-written**, fernignored |
 | `src/Auth0.MyOrganizationApi/Core/Public/Version.cs` | `Version.Current` constant — kept in sync with `.version` |
 | `.fernignore` | The list of files Fern will **not** overwrite on regeneration |
 
@@ -84,7 +85,7 @@ Apply these on every task in this repo — they keep changes correct, small, and
 - Throw / catch the project's typed exceptions — `MyOrganizationApiException` and its subclasses derived from `MyOrganizationException` (see [references/code-style.md](references/code-style.md)).
 - Update `README.md` (and `EXAMPLES.md` if it exists) in the same PR when changing the public API, configuration options, or supported integration patterns. `reference.md` is generated — don't hand-edit it.
 - Keep the version in sync across `.version`, `Core/Public/Version.cs`, and the `.csproj`/`Custom.props` `<Version>` (the `.shiprc` bump targets these) — never edit one alone.
-- When adding a **new outbound request path to Auth0**, let it ride on the existing `Auth0-Client` header injected in `src/Auth0.MyOrganizationApi/Core/RawClient.cs` (`InjectAuth0ClientHeader` / `CreateAgentString`) — don't hand-roll a separate `HttpClient` that bypasses it. Telemetry is shared per-request infrastructure; most changes need no telemetry work.
+- When adding a **new outbound request path to Auth0**, let it ride on the existing `Auth0-Client` header seeded by the `ClientOptions` constructor in `src/Auth0.MyOrganizationApi/Core/Public/ClientOptions.Custom.cs` (`CreateAgentString`) — build requests from a `ClientOptions` and don't hand-roll a separate `HttpClient` that bypasses it. Telemetry is shared per-request infrastructure; most changes need no telemetry work.
 
 ### ⚠️ Ask First
 
@@ -112,7 +113,7 @@ This is an OAuth2 auth SDK for machine-to-machine access to the Auth0 My Organiz
 - **Token handling:** access tokens are obtained via `ITokenProvider` implementations (`ClientCredentialsTokenProvider`, `DelegateTokenProvider`) and injected as a per-request `Authorization: Bearer` header set dynamically in `MyOrganizationClient`. Never log, cache to disk, or serialize tokens or client secrets.
 - **Private Key JWT:** `ClientCredentialsTokenProvider.WithClientAssertion` signs a JWT with a caller-provided `SecurityKey` (RS256/HS256). Keep private-key material in the caller's hands — the SDK never persists it.
 - **Domain validation:** `MyOrganizationClient` rejects a `Domain` that includes a scheme or path (throws `ArgumentException`) to avoid malformed base URLs — preserve this validation.
-- **Telemetry:** the `Auth0-Client` header (base64url JSON `{ name, version, env }`) is sent on every request. It carries no secrets — do not add token or PII fields to it.
+- **Telemetry:** the `Auth0-Client` header (seeded in `ClientOptions.Custom.cs`) (base64url JSON `{ name, version, env }`) is sent on every request. It carries no secrets — do not add token or PII fields to it.
 - **Secret scanning:** Snyk (`.snyk`, `snyk.yml`) and ReversingLabs (`rl-secure.yml`) run in CI. Don't disable them to get a change through.
 
 ---
