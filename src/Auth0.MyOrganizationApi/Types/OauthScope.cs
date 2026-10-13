@@ -219,6 +219,26 @@ public readonly record struct OauthScope : IStringEnum
         Values.DeleteMyOrgOrganizations
     );
 
+    /// <summary>
+    /// List connection groups for organization
+    /// </summary>
+    public static readonly OauthScope ReadMyOrgGroups = new(Values.ReadMyOrgGroups);
+
+    /// <summary>
+    /// List roles for a group in organization
+    /// </summary>
+    public static readonly OauthScope ReadMyOrgGroupRoles = new(Values.ReadMyOrgGroupRoles);
+
+    /// <summary>
+    /// Assign roles to a group in organization
+    /// </summary>
+    public static readonly OauthScope CreateMyOrgGroupRoles = new(Values.CreateMyOrgGroupRoles);
+
+    /// <summary>
+    /// Remove roles from a group in organization
+    /// </summary>
+    public static readonly OauthScope DeleteMyOrgGroupRoles = new(Values.DeleteMyOrgGroupRoles);
+
     public OauthScope(string value)
     {
         Value = value;
@@ -498,5 +518,25 @@ public readonly record struct OauthScope : IStringEnum
         /// Delete this organization
         /// </summary>
         public const string DeleteMyOrgOrganizations = "delete:my_org:organizations";
+
+        /// <summary>
+        /// List connection groups for organization
+        /// </summary>
+        public const string ReadMyOrgGroups = "read:my_org:groups";
+
+        /// <summary>
+        /// List roles for a group in organization
+        /// </summary>
+        public const string ReadMyOrgGroupRoles = "read:my_org:group_roles";
+
+        /// <summary>
+        /// Assign roles to a group in organization
+        /// </summary>
+        public const string CreateMyOrgGroupRoles = "create:my_org:group_roles";
+
+        /// <summary>
+        /// Remove roles from a group in organization
+        /// </summary>
+        public const string DeleteMyOrgGroupRoles = "delete:my_org:group_roles";
     }
 }

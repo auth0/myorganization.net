@@ -40,10 +40,10 @@ public class ListTest : BaseMockServerTest
         var response = await Client.Organization.UserStores.ListAsync(
             new ListOrganizationUserStoresRequestParameters
             {
-                MemberAccessLevel =
-                [
-                    ..new List<OrganizationAccessLevelEnum?>() { OrganizationAccessLevelEnum.None },
-                ],
+                MemberAccessLevel = new List<OrganizationAccessLevelEnum?>()
+                {
+                    OrganizationAccessLevelEnum.None,
+                },
                 IsEnabled = true,
             }
         );

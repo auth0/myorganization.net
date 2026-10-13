@@ -7,7 +7,7 @@ public partial interface IMembershipsClient
     /// <summary>
     /// Remove one member from this Organization. The underlying user account is not deleted.
     /// </summary>
-    Task DeleteMembershipsAsync(
+    WithRawResponseTask DeleteMembershipsAsync(
         DeleteOrganizationMembershipsRequestParameters request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default

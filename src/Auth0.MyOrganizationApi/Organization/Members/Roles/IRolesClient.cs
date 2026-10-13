@@ -18,7 +18,7 @@ public partial interface IRolesClient
     /// <summary>
     /// Assign roles to a member specified by ID for this Organization.
     /// </summary>
-    Task AssignAsync(
+    WithRawResponseTask AssignAsync(
         string userId,
         OrganizationMemberRolesChangeRequestContent request,
         RequestOptions? options = null,
@@ -28,7 +28,7 @@ public partial interface IRolesClient
     /// <summary>
     /// Remove roles from a member specified by ID for this Organization.
     /// </summary>
-    Task UnassignAsync(
+    WithRawResponseTask UnassignAsync(
         string userId,
         OrganizationMemberRolesChangeRequestContent request,
         RequestOptions? options = null,

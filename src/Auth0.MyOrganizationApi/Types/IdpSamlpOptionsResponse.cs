@@ -30,14 +30,14 @@ public class IdpSamlpOptionsResponse
     public object? Value { get; internal set; }
 
     /// <summary>
-    /// Factory method to create a union from a Auth0.MyOrganizationApi.IdpSamlpOptionsResponseMetadataUrl value.
+    /// Factory method to create a union from a <see cref="Auth0.MyOrganizationApi.IdpSamlpOptionsResponseMetadataUrl"/> value.
     /// </summary>
     public static IdpSamlpOptionsResponse FromIdpSamlpOptionsResponseMetadataUrl(
         Auth0.MyOrganizationApi.IdpSamlpOptionsResponseMetadataUrl value
     ) => new("idpSamlpOptionsResponseMetadataUrl", value);
 
     /// <summary>
-    /// Factory method to create a union from a Auth0.MyOrganizationApi.IdpSamlpOptionsResponseSignInEndpoint value.
+    /// Factory method to create a union from a <see cref="Auth0.MyOrganizationApi.IdpSamlpOptionsResponseSignInEndpoint"/> value.
     /// </summary>
     public static IdpSamlpOptionsResponse FromIdpSamlpOptionsResponseSignInEndpoint(
         Auth0.MyOrganizationApi.IdpSamlpOptionsResponseSignInEndpoint value

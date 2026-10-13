@@ -39,7 +39,7 @@ public partial interface IDomainsClient
     /// <summary>
     /// Delete an Auth0 Organization domain using its unique domain ID, including all associated details and verification status.
     /// </summary>
-    Task DeleteAsync(
+    WithRawResponseTask DeleteAsync(
         string domainId,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
