@@ -1,4 +1,3 @@
-using System.Text.Json;
 using global::System.Net.Http;
 using global::System.Net.Http.Headers;
 using global::System.Text;
@@ -24,7 +23,7 @@ internal partial class RawClient(ClientOptions clientOptions)
     /// <summary>
     /// The client options applied on every request.
     /// </summary>
-    internal readonly ClientOptions Options = InjectAuth0ClientHeader(clientOptions);
+    internal readonly ClientOptions Options = clientOptions;
 
     internal async global::System.Threading.Tasks.Task<global::Auth0.MyOrganizationApi.Core.ApiResponse> SendRequestAsync(
         global::Auth0.MyOrganizationApi.Core.BaseRequest request,
@@ -341,49 +340,5 @@ internal partial class RawClient(ClientOptions clientOptions)
         }
 
         return (encoding, charset, mediaType);
-    }
-    
-    private static ClientOptions InjectAuth0ClientHeader(ClientOptions options)
-    {
-        if (!options.Headers.ContainsKey("Auth0-Client"))
-        {
-            options.Headers["Auth0-Client"] = CreateAgentString();
-        }
-
-        return options;
-    }
-
-    private static string CreateAgentString()
-    {
-#if NET462
-        var target = "NET462";
-#elif NETSTANDARD2_0
-        var target = "NETSTANDARD2.0";
-#elif NET6_0
-        var target = "NET6.0";
-#elif NET7_0
-        var target = "NET7.0";
-#elif NET8_0
-        var target = "NET8.0";
-#else
-        var target = "UNKNOWN";
-#endif
-
-        var agentJson = JsonSerializer.Serialize(new
-        {
-            name = "MyOrganization.NET",
-            version = Version.Current,
-            env = new { target }
-        });
-        return Base64UrlEncode(Encoding.UTF8.GetBytes(agentJson));
-    }
-
-    private static string Base64UrlEncode(byte[] input)
-    {
-        var output = Convert.ToBase64String(input);
-        output = output.Replace('+', '-');  // 62nd char of encoding
-        output = output.Replace('/', '_');  // 63rd char of encoding
-        output = output.TrimEnd('=');       // Remove padding
-        return output;
     }
 }
