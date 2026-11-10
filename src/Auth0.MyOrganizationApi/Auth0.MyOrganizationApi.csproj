@@ -8,8 +8,12 @@
     <Version>2.0.0</Version>
     <AssemblyVersion>$(Version)</AssemblyVersion>
     <FileVersion>$(Version)</FileVersion>
-    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageReadmeFile Condition="Exists('..\..\README.md')">README.md</PackageReadmeFile>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <NoWarn>$(NoWarn);CS1591</NoWarn>
     <PackageProjectUrl>https://github.com/auth0/myorganization.net</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/auth0/myorganization.net</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
     <PolySharpIncludeRuntimeSupportedAttributes>true</PolySharpIncludeRuntimeSupportedAttributes>
   </PropertyGroup>
 
@@ -45,7 +49,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="..\..\README.md" Pack="true" PackagePath="" />
+    <None
+      Include="..\..\README.md"
+      Pack="true"
+      PackagePath=""
+      Condition="Exists('..\..\README.md')"
+    />
   </ItemGroup>
 
   <ItemGroup>

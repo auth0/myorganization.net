@@ -10,6 +10,18 @@ public partial class MyOrganizationApiClient : IMyOrganizationApiClient
     public MyOrganizationApiClient(string? token = null, ClientOptions? clientOptions = null)
     {
         clientOptions ??= new ClientOptions();
+        if (clientOptions.TenantDomain != null)
+        {
+            var _tenantDomain = clientOptions.TenantDomain ?? "{TENANT}.auth0.com";
+            if (!clientOptions.IsBaseUrlExplicitlySet)
+            {
+                clientOptions.BaseUrl = $"https://{_tenantDomain}/my-org/v1";
+            }
+            else if (clientOptions.BaseUrl == MyOrganizationApiClientEnvironment.Default)
+            {
+                clientOptions.BaseUrl = $"https://{_tenantDomain}/my-org/v1";
+            }
+        }
         var platformHeaders = new Headers(new Dictionary<string, string>() { });
         foreach (var header in platformHeaders)
         {

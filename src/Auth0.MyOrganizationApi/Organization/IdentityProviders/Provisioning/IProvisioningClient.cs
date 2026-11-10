@@ -28,7 +28,7 @@ public partial interface IProvisioningClient
     /// <summary>
     /// Delete the Provisioning Configuration for an Identity Provider specified by ID for this Organization.
     /// </summary>
-    Task DeleteAsync(
+    WithRawResponseTask DeleteAsync(
         string idpId,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default

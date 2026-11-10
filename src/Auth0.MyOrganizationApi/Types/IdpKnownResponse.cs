@@ -30,49 +30,49 @@ public class IdpKnownResponse
     public object? Value { get; internal set; }
 
     /// <summary>
-    /// Factory method to create a union from a Auth0.MyOrganizationApi.IdpAdfsResponse value.
+    /// Factory method to create a union from a <see cref="Auth0.MyOrganizationApi.IdpAdfsResponse"/> value.
     /// </summary>
     public static IdpKnownResponse FromIdpAdfsResponse(
         Auth0.MyOrganizationApi.IdpAdfsResponse value
     ) => new("idpAdfsResponse", value);
 
     /// <summary>
-    /// Factory method to create a union from a Auth0.MyOrganizationApi.IdpGoogleAppsResponse value.
+    /// Factory method to create a union from a <see cref="Auth0.MyOrganizationApi.IdpGoogleAppsResponse"/> value.
     /// </summary>
     public static IdpKnownResponse FromIdpGoogleAppsResponse(
         Auth0.MyOrganizationApi.IdpGoogleAppsResponse value
     ) => new("idpGoogleAppsResponse", value);
 
     /// <summary>
-    /// Factory method to create a union from a Auth0.MyOrganizationApi.IdpOidcResponse value.
+    /// Factory method to create a union from a <see cref="Auth0.MyOrganizationApi.IdpOidcResponse"/> value.
     /// </summary>
     public static IdpKnownResponse FromIdpOidcResponse(
         Auth0.MyOrganizationApi.IdpOidcResponse value
     ) => new("idpOidcResponse", value);
 
     /// <summary>
-    /// Factory method to create a union from a Auth0.MyOrganizationApi.IdpOktaResponse value.
+    /// Factory method to create a union from a <see cref="Auth0.MyOrganizationApi.IdpOktaResponse"/> value.
     /// </summary>
     public static IdpKnownResponse FromIdpOktaResponse(
         Auth0.MyOrganizationApi.IdpOktaResponse value
     ) => new("idpOktaResponse", value);
 
     /// <summary>
-    /// Factory method to create a union from a Auth0.MyOrganizationApi.IdpPingFederateResponse value.
+    /// Factory method to create a union from a <see cref="Auth0.MyOrganizationApi.IdpPingFederateResponse"/> value.
     /// </summary>
     public static IdpKnownResponse FromIdpPingFederateResponse(
         Auth0.MyOrganizationApi.IdpPingFederateResponse value
     ) => new("idpPingFederateResponse", value);
 
     /// <summary>
-    /// Factory method to create a union from a Auth0.MyOrganizationApi.IdpSamlpResponse value.
+    /// Factory method to create a union from a <see cref="Auth0.MyOrganizationApi.IdpSamlpResponse"/> value.
     /// </summary>
     public static IdpKnownResponse FromIdpSamlpResponse(
         Auth0.MyOrganizationApi.IdpSamlpResponse value
     ) => new("idpSamlpResponse", value);
 
     /// <summary>
-    /// Factory method to create a union from a Auth0.MyOrganizationApi.IdpWaadResponse value.
+    /// Factory method to create a union from a <see cref="Auth0.MyOrganizationApi.IdpWaadResponse"/> value.
     /// </summary>
     public static IdpKnownResponse FromIdpWaadResponse(
         Auth0.MyOrganizationApi.IdpWaadResponse value
