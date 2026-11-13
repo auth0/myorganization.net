@@ -33,7 +33,7 @@ jobs:
       dotnet-version: 10.0.x
       project-paths: "['src/Auth0.MyOrganizationApi/Auth0.MyOrganizationApi.csproj']"
     secrets:
-      nuget-token: ${{ secrets.NUGET_APIKEY }}
+      nuget-user: ${{ secrets.NUGET_USER }}
       github-token: ${{ secrets.GITHUB_TOKEN }}
 
   generate-docs:
